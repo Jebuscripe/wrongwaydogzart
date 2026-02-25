@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wrong Way Dogz Art - Coming Soon</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<!-- Neon data streams -->
+<div id="streamsContainer"></div>
+
+<h1 id="title"></h1>
+<p>Website Coming Soon 🐾</p>
+
+<!-- Glitch Generator Controls -->
+<label for="fontSelect">Choose Font:</label>
+<select id="fontSelect">
+  <option value="'Press Start 2P', monospace">Press Start 2P</option>
+  <option value="'Orbitron', sans-serif">Orbitron</option>
+  <option value="'Share Tech Mono', monospace">Share Tech Mono</option>
+</select>
+
+<label for="intensity">Glitch Intensity:</label>
+<input type="range" id="intensity" min="0" max="20" value="5">
+
+<div id="glitchText">GLITCHY TEXT HERE</div>
+
+<script src="script.js"></script>
+</body>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0,255,255,0.1);
+  animation: scan 3s infinite linear;
+  z-index: 3;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* Neon data stream background */
+.stream {
+  position: absolute;
+  top: -100%;
+  width: 2px;
+  height: 200%;
+  background: linear-gradient(to bottom, rgba(0,255,255,0), rgba(0,255,255,0.5), rgba(0,255,255,0));
+  animation: streamFall linear infinite;
+}
+
+@keyframes streamFall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+h1 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2.5em;
+  letter-spacing: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+}
+
+h1 span {
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+  display: inline-block;
+  transition: all 0.1s;
+}
+
+p {
+  font-size: 1.2em;
+  color: #f0f;
+  margin-bottom: 30px;
+  text-shadow: 0 0 5px #f0f, 0 0 10px #f0f;
+  z-index: 2;
+  position: relative;
+}
+
+select, input[type=range] {
+  margin: 10px;
+  padding: 5px;
+  background: #111;
+  color: #0ff;
+  border: 1px solid #0ff;
+  outline: none;
+  font-family: 'Share Tech Mono', monospace;
+  z-index: 2;
+  position: relative;
+}
+
+#glitchText {
+  font-size: 2em;
+  margin-top: 20px;
+  color: #ff0;
+  text-shadow: 0 0 5px #ff0, 0 0 10px #ff0;
+  transition: all 0.1s;
+  cursor: default;
+  z-index: 2;
+  position: relative;
+}
+const title = document.getElementById('title');
+const glitchText = document.getElementById('glitchText');
+const fontSelect = document.getElementById('fontSelect');
+const intensity = document.getElementById('intensity');
+const streamsContainer = document.getElementById('streamsContainer');
+
+const headerText = "WRONG WAY DOGZ ART";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()[]{}<>?/\\|";
+
+// Initialize header letters
+title.innerHTML = '';
+for (let c of headerText) {
+  let span = document.createElement('span');
+  span.textContent = c;
+  title.appendChild(span);
+}
+const spans = title.querySelectorAll('span');
+
+// Initialize neon streams
+const numStreams = 50;
+for (let i = 0; i < numStreams; i++) {
+  let s = document.createElement('div');
+  s.classList.add('stream');
+  s.style.left = Math.random()*100+'%';
+  s.style.animationDuration = (Math.random()*3+2)+'s';
+  streamsContainer.appendChild(s);
+}
+
+function randomGlitch(str, amt) {
+  let result = '';
+  for (let i = 0; i < str.length; i++) {
+    if (Math.random() < amt/100) {
+      result += chars[Math.floor(Math.random() * chars.length)];
+    } else {
+      result += str[i];
+    }
+  }
+  return result;
+}
+
+function updateHeaderGlitch() {
+  spans.forEach(span => {
+    if (Math.random() < 0.1) {
+      span.style.transform = `translate(${Math.random()*6-3}px, ${Math.random()*6-3}px) rotate(${Math.random()*15-7}deg)`;
+      span.style.color = `hsl(${Math.random()*360}, 100%, 70%)`;
+      span.style.textShadow = `0 0 5px #fff, 0 0 10px ${span.style.color}, 0 0 20px ${span.style.color}`;
+    } else {
+      span.style.transform = 'none';
+      span.style.color = '#0ff';
+      span.style.textShadow = '0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff';
+    }
+  });
+}
+
+let baseText = "WELCOME TO WRONGWAYDOGZART";
+function updateGlitch() {
+  glitchText.style.fontFamily = fontSelect.value;
+  const intensityVal = parseInt(intensity.value);
+  glitchText.textContent = randomGlitch(baseText, intensityVal);
+  updateHeaderGlitch();
+}
+
+setInterval(updateGlitch, 100);
+
+// Easter Egg: click header to explode letters
+title.addEventListener('click', () => {
+  spans.forEach(span => {
+    span.style.transition = 'all 0.3s';
+    span.style.transform = `translate(${Math.random()*60-30}px, ${Math.random()*60-30}px) rotate(${Math.random()*360}deg)`;
+    span.style.color = `hsl(${Math.random()*360}, 100%, 50%)`;
+  });
+  setTimeout(() => spans.forEach(span => span.style.transform='none'), 500);
+});
+
+// Easter Egg: click background for random neon flashes
+document.body.addEventListener('click', (e) => {
+  if (e.target === document.body) {
+    let flash = document.createElement('div');
+    flash.style.position = 'absolute';
+    flash.style.left = Math.random()*100+'%';
+    flash.style.top = Math.random()*100+'%';
+    flash.style.width = flash.style.height = Math.random()*50+20+'px';
+    flash.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    flash.style.borderRadius = '50%';
+    flash.style.opacity = 0.5;
+    flash.style.pointerEvents = 'none';
+    flash.style.zIndex = 1;
+    document.body.appendChild(flash);
+    setTimeout(()=>document.body.removeChild(flash),300);
+  }
+});
+</html>
+const title = document.getElementById('title');
+const glitchText = document.getElementById('glitchText');
+const fontSelect = document.getElementById('fontSelect');
+const intensity = document.getElementById('intensity');
+const streamsContainer = document.getElementById('streamsContainer');
+
+const headerText = "WRONG WAY DOGZ ART";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()[]{}<>?/\\|";
+
+// Initialize header letters
+title.innerHTML = '';
+for (let c of headerText) {
+  let span = document.createElement('span');
+  span.textContent = c;
+  title.appendChild(span);
+}
+const spans = title.querySelectorAll('span');
+
+// Initialize neon streams
+const numStreams = 50;
+for (let i = 0; i < numStreams; i++) {
+  let s = document.createElement('div');
+  s.classList.add('stream');
+  s.style.left = Math.random()*100+'%';
+  s.style.animationDuration = (Math.random()*3+2)+'s';
+  streamsContainer.appendChild(s);
+}
+
+function randomGlitch(str, amt) {
+  let result = '';
+  for (let i = 0; i < str.length; i++) {
+    if (Math.random() < amt/100) {
+      result += chars[Math.floor(Math.random() * chars.length)];
+    } else {
+      result += str[i];
+    }
+  }
+  return result;
+}
+
+function updateHeaderGlitch() {
+  spans.forEach(span => {
+    if (Math.random() < 0.1) {
+      span.style.transform = `translate(${Math.random()*6-3}px, ${Math.random()*6-3}px) rotate(${Math.random()*15-7}deg)`;
+      span.style.color = `hsl(${Math.random()*360}, 100%, 70%)`;
+      span.style.textShadow = `0 0 5px #fff, 0 0 10px ${span.style.color}, 0 0 20px ${span.style.color}`;
+    } else {
+      span.style.transform = 'none';
+      span.style.color = '#0ff';
+      span.style.textShadow = '0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff';
+    }
+  });
+}
+
+let baseText = "WELCOME TO WRONGWAYDOGZART";
+function updateGlitch() {
+  glitchText.style.fontFamily = fontSelect.value;
+  const intensityVal = parseInt(intensity.value);
+  glitchText.textContent = randomGlitch(baseText, intensityVal);
+  updateHeaderGlitch();
+}
+
+setInterval(updateGlitch, 100);
+
+// Easter Egg: click header to explode letters
+title.addEventListener('click', () => {
+  spans.forEach(span => {
+    span.style.transition = 'all 0.3s';
+    span.style.transform = `translate(${Math.random()*60-30}px, ${Math.random()*60-30}px) rotate(${Math.random()*360}deg)`;
+    span.style.color = `hsl(${Math.random()*360}, 100%, 50%)`;
+  });
+  setTimeout(() => spans.forEach(span => span.style.transform='none'), 500);
+});
+
+// Easter Egg: click background for random neon flashes
+document.body.addEventListener('click', (e) => {
+  if (e.target === document.body) {
+    let flash = document.createElement('div');
+    flash.style.position = 'absolute';
+    flash.style.left = Math.random()*100+'%';
+    flash.style.top = Math.random()*100+'%';
+    flash.style.width = flash.style.height = Math.random()*50+20+'px';
+    flash.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    flash.style.borderRadius = '50%';
+    flash.style.opacity = 0.5;
+    flash.style.pointerEvents = 'none';
+    flash.style.zIndex = 1;
+    document.body.appendChild(flash);
+    setTimeout(()=>document.body.removeChild(flash),300);
+  }
+});@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0,255,255,0.1);
+  animation: scan 3s infinite linear;
+  z-index: 3;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* Neon data stream background */
+.stream {
+  position: absolute;
+  top: -100%;
+  width: 2px;
+  height: 200%;
+  background: linear-gradient(to bottom, rgba(0,255,255,0), rgba(0,255,255,0.5), rgba(0,255,255,0));
+  animation: streamFall linear infinite;
+}
+
+@keyframes streamFall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+h1 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2.5em;
+  letter-spacing: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+}
+
+h1 span {
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+  display: inline-block;
+  transition: all 0.1s;
+}
+
+p {
+  font-size: 1.2em;
+  color: #f0f;
+  margin-bottom: 30px;
+  text-shadow: 0 0 5px #f0f, 0 0 10px #f0f;
+  z-index: 2;
+  position: relative;
+}
+
+select, input[type=range] {
+  margin: 10px;
+  padding: 5px;
+  background: #111;
+  color: #0ff;
+  border: 1px solid #0ff;
+  outline: none;
+  font-family: 'Share Tech Mono', monospace;
+  z-index: 2;
+  position: relative;
+}
+
+#glitchText {
+  font-size: 2em;
+  margin-top: 20px;
+  color: #ff0;
+  text-shadow: 0 0 5px #ff0, 0 0 10px #ff0;
+  transition: all 0.1s;
+  cursor: default;
+  z-index: 2;
+  position: relative;
+}
