@@ -1,46 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wrong Way Dogz Art</title>
 
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
-      background: black;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       font-family: Arial, sans-serif;
+      background: black;
+    }
+
+    .world {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
     }
 
     .world-image {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       object-fit: cover;
       display: block;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
-    .overlay {
-      position: fixed;
+    .overlay-text {
+      position: absolute;
       bottom: 20px;
-      width: 100%;
-      text-align: center;
+      left: 50%;
+      transform: translateX(-50%);
       color: white;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-align: center;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    .hotspot {
+      position: absolute;
+      border-radius: 16px;
+      z-index: 20;
+      cursor: pointer;
+      transition: box-shadow 0.25s ease, transform 0.2s ease, background 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hotspot:hover,
+    .hotspot:focus,
+    .hotspot:active {
+      box-shadow:
+        0 0 18px rgba(0, 255, 200, 0.25),
+        0 0 34px rgba(0, 255, 200, 0.18),
+        inset 0 0 16px rgba(0, 255, 200, 0.08);
+      background: rgba(0, 255, 200, 0.05);
+      transform: scale(1.02);
+      outline: none;
+    }
+
+    .label {
+      position: absolute;
+      left: 50%;
+      bottom: -34px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      color: white;
+      font-size: 12px;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 6px 10px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .hotspot:hover .label,
+    .hotspot:focus .label,
+    .hotspot:active .label {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    /* Hotspot positions — adjust these later by eye */
+    .treehouse-zone {
+      top: 16%;
+      left: 39%;
+      width: 23%;
+      height: 22%;
+    }
+
+    .cave-zone {
+      top: 62%;
+      left: 43%;
+      width: 22%;
+      height: 18%;
+    }
+
+    .pixel-zone {
+      top: 48%;
+      left: 12%;
+      width: 16%;
+      height: 28%;
+    }
+
+    .lj-zone {
+      top: 72%;
+      left: 68%;
+      width: 12%;
+      height: 14%;
+    }
+
+    @media (max-width: 768px) {
+      .overlay-text {
+        bottom: 14px;
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+
+      .label {
+        font-size: 11px;
+        bottom: -30px;
+      }
+
+      .treehouse-zone {
+        top: 18%;
+        left: 34%;
+        width: 30%;
+        height: 20%;
+      }
+
+      .cave-zone {
+        top: 61%;
+        left: 40%;
+        width: 26%;
+        height: 18%;
+      }
+
+      .pixel-zone {
+        top: 50%;
+        left: 8%;
+        width: 20%;
+        height: 25%;
+      }
+
+      .lj-zone {
+        top: 74%;
+        left: 66%;
+        width: 16%;
+        height: 12%;
+      }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- FULL SCREEN WORLD IMAGE -->
-  <img src="assets/world.png" alt="Wrong Way World" class="world-image">
+  <div class="world">
+    <img src="assets/world.png" alt="Wrong Way World" class="world-image" />
 
-  <!-- OVERLAY TEXT -->
-  <div class="overlay">
-    A world is forming... 🐾
+    <div class="overlay-text">A world is forming... 🐾</div>
+
+    <!-- TREEHOUSE / WORD GAME -->
+    <div class="hotspot treehouse-zone" onclick="goToWords()" tabindex="0" aria-label="Play Wrong Way Words">
+      <div class="label">Play Wrong Way Words</div>
+    </div>
+
+    <!-- CAVE / VOID / EXPERIMENTS -->
+    <div class="hotspot cave-zone" onclick="goToVoid()" tabindex="0" aria-label="Enter the Unknown">
+      <div class="label">Enter the Unknown</div>
+    </div>
+
+    <!-- PIXEL GUY / ABOUT -->
+    <div class="hotspot pixel-zone" onclick="goToAbout()" tabindex="0" aria-label="About Wrong Way Dogz Art">
+      <div class="label">About / Support</div>
+    </div>
+
+    <!-- LJ / CHAOS -->
+    <div class="hotspot lj-zone" onclick="goToChaos()" tabindex="0" aria-label="Chaos Soon">
+      <div class="label">Chaos Soon</div>
+    </div>
   </div>
+
+  <script>
+    function goToWords() {
+      window.location.href = "wrongwaywords.html";
+    }
+
+    function goToVoid() {
+      alert("The unknown is still forming...");
+    }
+
+    function goToAbout() {
+      alert("About / Support section coming soon.");
+    }
+
+    function goToChaos() {
+      alert("Chaos is coming soon...");
+    }
+
+    // Keyboard support for desktop
+    document.querySelectorAll(".hotspot").forEach((spot) => {
+      spot.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          spot.click();
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
