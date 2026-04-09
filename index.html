@@ -8,15 +8,16 @@
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html, body {
-      margin: 0;
       width: 100%;
       height: 100%;
       overflow: hidden;
       font-family: Arial, sans-serif;
-      background: black;
+      background: #000;
     }
 
     .world {
@@ -24,202 +25,258 @@
       width: 100%;
       height: 100vh;
       overflow: hidden;
+      background: #000;
     }
 
+    /* Main image layer */
     .world-image {
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 108%;
+      height: 108%;
       object-fit: cover;
-      display: block;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s ease-out;
+      will-change: transform;
       user-select: none;
       -webkit-user-drag: none;
+      pointer-events: none;
     }
 
-    .overlay-text {
+    /* Soft teal glow */
+    .glow-layer {
       position: absolute;
-      bottom: 20px;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 60%, rgba(0, 255, 200, 0.10), transparent 35%),
+        radial-gradient(circle at 75% 30%, rgba(0, 180, 255, 0.08), transparent 25%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: glowPulse 6s ease-in-out infinite;
+    }
+
+    /* Fog / atmosphere */
+    .fog-layer {
+      position: absolute;
+      inset: -10%;
+      background:
+        radial-gradient(circle at 20% 70%, rgba(255,255,255,0.05), transparent 20%),
+        radial-gradient(circle at 70% 40%, rgba(0,255,200,0.05), transparent 22%),
+        radial-gradient(circle at 85% 75%, rgba(255,255,255,0.03), transparent 18%);
+      filter: blur(24px);
+      opacity: 0.75;
+      pointer-events: none;
+      animation: fogDrift 18s ease-in-out infinite alternate;
+    }
+
+    /* Dark edges for depth */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.45) 100%);
+      pointer-events: none;
+    }
+
+    /* Bottom button area */
+    .bottom-ui {
+      position: absolute;
       left: 50%;
+      bottom: 36px;
       transform: translateX(-50%);
-      color: white;
-      background: rgba(0, 0, 0, 0.35);
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-size: 14px;
-      letter-spacing: 0.5px;
-      text-align: center;
-      z-index: 10;
-      backdrop-filter: blur(4px);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: min(90%, 420px);
     }
 
-    .hotspot {
-      position: absolute;
+    .enter-btn {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.45);
+      color: #f2f2f2;
+      padding: 14px 22px;
       border-radius: 16px;
-      z-index: 20;
+      font-size: 1rem;
+      backdrop-filter: blur(6px);
       cursor: pointer;
-      transition: box-shadow 0.25s ease, transform 0.2s ease, background 0.2s ease;
-      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
     }
 
-    .hotspot:hover,
-    .hotspot:focus,
-    .hotspot:active {
-      box-shadow:
-        0 0 18px rgba(0, 255, 200, 0.25),
-        0 0 34px rgba(0, 255, 200, 0.18),
-        inset 0 0 16px rgba(0, 255, 200, 0.08);
-      background: rgba(0, 255, 200, 0.05);
-      transform: scale(1.02);
-      outline: none;
+    .enter-btn:hover,
+    .enter-btn:active {
+      transform: scale(1.03);
+      background: rgba(0, 20, 20, 0.62);
+      border-color: rgba(0, 255, 200, 0.35);
     }
 
-    .label {
+    /* Custom popup */
+    .message-box {
       position: absolute;
       left: 50%;
-      bottom: -34px;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      color: white;
-      font-size: 12px;
-      background: rgba(0, 0, 0, 0.55);
-      padding: 6px 10px;
-      border-radius: 999px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(88%, 420px);
+      padding: 22px 20px;
+      border-radius: 22px;
+      background: rgba(10, 10, 14, 0.82);
+      color: #f4f4f4;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      text-align: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .message-box.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .message-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #bffcf0;
+    }
+
+    .message-text {
+      font-size: 1rem;
+      line-height: 1.45;
+      color: #e8e8e8;
+      margin-bottom: 16px;
+    }
+
+    .message-close {
+      border: none;
+      background: rgba(0, 255, 200, 0.14);
+      color: #dffff8;
+      padding: 10px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .message-close:hover,
+    .message-close:active {
+      background: rgba(0, 255, 200, 0.22);
+    }
+
+    /* Intro text */
+    .scene-whisper {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      color: rgba(255,255,255,0.82);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.2);
+      padding: 8px 14px;
+      border-radius: 999px;
       backdrop-filter: blur(4px);
     }
 
-    .hotspot:hover .label,
-    .hotspot:focus .label,
-    .hotspot:active .label {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-2px);
+    @keyframes fogDrift {
+      0% {
+        transform: translateX(-1.5%) translateY(0%) scale(1);
+      }
+      100% {
+        transform: translateX(1.5%) translateY(-1%) scale(1.04);
+      }
     }
 
-    /* Hotspot positions — adjust these later by eye */
-    .treehouse-zone {
-      top: 16%;
-      left: 39%;
-      width: 23%;
-      height: 22%;
-    }
-
-    .cave-zone {
-      top: 62%;
-      left: 43%;
-      width: 22%;
-      height: 18%;
-    }
-
-    .pixel-zone {
-      top: 48%;
-      left: 12%;
-      width: 16%;
-      height: 28%;
-    }
-
-    .lj-zone {
-      top: 72%;
-      left: 68%;
-      width: 12%;
-      height: 14%;
-    }
-
-    @media (max-width: 768px) {
-      .overlay-text {
-        bottom: 14px;
-        font-size: 12px;
-        padding: 8px 12px;
+    @keyframes glowPulse {
+      0%, 100% {
+        opacity: 0.75;
       }
-
-      .label {
-        font-size: 11px;
-        bottom: -30px;
-      }
-
-      .treehouse-zone {
-        top: 18%;
-        left: 34%;
-        width: 30%;
-        height: 20%;
-      }
-
-      .cave-zone {
-        top: 61%;
-        left: 40%;
-        width: 26%;
-        height: 18%;
-      }
-
-      .pixel-zone {
-        top: 50%;
-        left: 8%;
-        width: 20%;
-        height: 25%;
-      }
-
-      .lj-zone {
-        top: 74%;
-        left: 66%;
-        width: 16%;
-        height: 12%;
+      50% {
+        opacity: 1;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="world">
-    <img src="assets/world.png" alt="Wrong Way World" class="world-image" />
+  <div class="world" id="world">
+    <img src="assets/world.png" alt="Wrong Way Dogz World" class="world-image" id="worldImage">
 
-    <div class="overlay-text">A world is forming... 🐾</div>
+    <div class="fog-layer" id="fogLayer"></div>
+    <div class="glow-layer"></div>
+    <div class="vignette"></div>
 
-    <!-- TREEHOUSE / WORD GAME -->
-    <div class="hotspot treehouse-zone" onclick="goToWords()" tabindex="0" aria-label="Play Wrong Way Words">
-      <div class="label">Play Wrong Way Words</div>
+    <div class="scene-whisper">the world is waking up</div>
+
+    <div class="message-box show" id="messageBox">
+      <div class="message-title">Signal Detected</div>
+      <div class="message-text">
+        The unknown is still forming... but you can already feel the depth.
+      </div>
+      <button class="message-close" id="closeMessage">Step Closer</button>
     </div>
 
-    <!-- CAVE / VOID / EXPERIMENTS -->
-    <div class="hotspot cave-zone" onclick="goToVoid()" tabindex="0" aria-label="Enter the Unknown">
-      <div class="label">Enter the Unknown</div>
-    </div>
-
-    <!-- PIXEL GUY / ABOUT -->
-    <div class="hotspot pixel-zone" onclick="goToAbout()" tabindex="0" aria-label="About Wrong Way Dogz Art">
-      <div class="label">About / Support</div>
-    </div>
-
-    <!-- LJ / CHAOS -->
-    <div class="hotspot lj-zone" onclick="goToChaos()" tabindex="0" aria-label="Chaos Soon">
-      <div class="label">Chaos Soon</div>
+    <div class="bottom-ui">
+      <button class="enter-btn" id="enterBtn">Enter the Unknown</button>
     </div>
   </div>
 
   <script>
-    function goToWords() {
-      window.location.href = "wrongwaywords.html";
+    const world = document.getElementById("world");
+    const worldImage = document.getElementById("worldImage");
+    const fogLayer = document.getElementById("fogLayer");
+    const messageBox = document.getElementById("messageBox");
+    const closeMessage = document.getElementById("closeMessage");
+    const enterBtn = document.getElementById("enterBtn");
+
+    function moveScene(clientX, clientY) {
+      const rect = world.getBoundingClientRect();
+      const x = (clientX - rect.left) / rect.width - 0.5;
+      const y = (clientY - rect.top) / rect.height - 0.5;
+
+      const imageX = x * 18;
+      const imageY = y * 12;
+
+      const fogX = x * 10;
+      const fogY = y * 6;
+
+      worldImage.style.transform =
+        `translate(calc(-50% + ${imageX}px), calc(-50% + ${imageY}px)) scale(1.03)`;
+
+      fogLayer.style.transform =
+        `translate(${fogX}px, ${fogY}px) scale(1.04)`;
     }
 
-    function goToVoid() {
-      alert("The unknown is still forming...");
-    }
+    // Mouse support
+    world.addEventListener("mousemove", (e) => {
+      moveScene(e.clientX, e.clientY);
+    });
 
-    function goToAbout() {
-      alert("About / Support section coming soon.");
-    }
+    // Touch support for phone
+    world.addEventListener("touchmove", (e) => {
+      const touch = e.touches[0];
+      moveScene(touch.clientX, touch.clientY);
+    }, { passive: true });
 
-    function goToChaos() {
-      alert("Chaos is coming soon...");
-    }
+    // Reset gently when interaction stops
+    world.addEventListener("mouseleave", () => {
+      worldImage.style.transform = "translate(-50%, -50%) scale(1)";
+      fogLayer.style.transform = "translate(0, 0) scale(1)";
+    });
 
-    // Keyboard support for desktop
-    document.querySelectorAll(".hotspot").forEach((spot) => {
-      spot.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          spot.click();
-        }
-      });
+    closeMessage.addEventListener("click", () => {
+      messageBox.classList.remove("show");
+    });
+
+    enterBtn.addEventListener("click", () => {
+      messageBox.classList.add("show");
     });
   </script>
 
