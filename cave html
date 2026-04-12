@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wrong Way Dogz Art - Cave</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: Arial, sans-serif;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .scene img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    .hotspot {
+      position: absolute;
+      display: block;
+      z-index: 5;
+      background: transparent;
+      text-decoration: none;
+    }
+
+    /* Back to homepage */
+    .home-link {
+      top: 3%;
+      left: 2%;
+      width: 12%;
+      height: 10%;
+    }
+
+    /* Left table / experiment area */
+    .lab-zone {
+      left: 4%;
+      bottom: 10%;
+      width: 30%;
+      height: 28%;
+    }
+
+    /* Center bridge / path forward */
+    .bridge-zone {
+      left: 34%;
+      top: 38%;
+      width: 28%;
+      height: 22%;
+    }
+
+    /* Right rig / systems area */
+    .rig-zone {
+      right: 4%;
+      bottom: 16%;
+      width: 18%;
+      height: 26%;
+    }
+
+    /* Optional: helps on mobile tap */
+    .hotspot:focus,
+    .hotspot:active {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <img src="assets/cave.png" alt="Wrong Way Dogz cave scene" />
+
+    <!-- Back to homepage -->
+    <a class="hotspot home-link" href="index.html" aria-label="Return to main world"></a>
+
+    <!-- Left table / lore / experiments -->
+    <a class="hotspot lab-zone" href="#" aria-label="Experiments area"></a>
+
+    <!-- Center bridge / core path -->
+    <a class="hotspot bridge-zone" href="#" aria-label="Bridge path"></a>
+
+    <!-- Right rig / tools / systems -->
+    <a class="hotspot rig-zone" href="#" aria-label="Systems rig"></a>
+  </div>
+</body>
+</html>
