@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Wrong Way Dogz Art</title>
 
   <style>
@@ -48,263 +48,288 @@
       z-index: 1;
       pointer-events: none;
       background:
-        radial-gradient(circle at center, transparent 35%, rgba(0,0,0,0.45) 100%),
-        linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.45));
+        radial-gradient(circle at center, rgba(0,0,0,0.05), rgba(0,0,0,0.65)),
+        linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.45));
     }
 
     .title-card {
       position: absolute;
-      top: 4vh;
+      top: calc(7vh + env(safe-area-inset-top));
       left: 50%;
       transform: translateX(-50%);
-      width: min(88vw, 720px);
-      padding: 22px 24px;
-      text-align: center;
-      z-index: 3;
-      border: 1px solid rgba(122, 233, 199, 0.35);
-      border-radius: 999px;
+      width: min(84vw, 720px);
+      padding: 26px 22px 28px;
+      border-radius: 42px;
       background: rgba(0, 0, 0, 0.72);
-      box-shadow: 0 0 22px rgba(122, 233, 199, 0.16);
-      backdrop-filter: blur(4px);
+      border: 1px solid rgba(122, 233, 199, 0.35);
+      box-shadow: 0 0 28px rgba(122, 233, 199, 0.12);
+      text-align: center;
+      z-index: 5;
+      backdrop-filter: blur(5px);
     }
 
     .title-card h1 {
-      font-size: clamp(1.45rem, 5vw, 2.35rem);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      text-shadow: 0 0 14px rgba(122, 233, 199, 0.65);
+      font-size: clamp(2rem, 7vw, 4.2rem);
+      line-height: 1.18;
+      letter-spacing: 0.22em;
+      text-indent: 0.22em;
+      color: #effff9;
+      text-shadow: 0 0 16px rgba(190, 255, 235, 0.45);
+      margin-bottom: 18px;
     }
 
     .title-card p {
-      margin-top: 10px;
-      font-size: clamp(1rem, 3.5vw, 1.35rem);
-      letter-spacing: 0.08em;
-      opacity: 0.9;
+      font-size: clamp(1.15rem, 4vw, 2rem);
+      letter-spacing: 0.12em;
+      color: rgba(239, 255, 249, 0.95);
     }
 
-    .hotspot {
+    .zone {
       position: absolute;
       z-index: 4;
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      border: 2px solid rgba(122, 233, 199, 0);
-      background: rgba(122, 233, 199, 0);
+      border: 2px solid rgba(122, 233, 199, 0.58);
+      background: rgba(122, 233, 199, 0.13);
+      box-shadow:
+        0 0 20px rgba(122, 233, 199, 0.18),
+        inset 0 0 22px rgba(122, 233, 199, 0.14);
+      border-radius: 28px;
       cursor: pointer;
-      transform-origin: center;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .hotspot::after {
+    .zone::after {
       content: "";
       position: absolute;
-      inset: 20px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
-      background: rgba(122, 233, 199, 0);
-      box-shadow: 0 0 0 rgba(122, 233, 199, 0);
-      transition: 0.25s ease;
-    }
-
-    .show-hotspots .hotspot {
-      border-color: rgba(122, 233, 199, 0.55);
-      background: rgba(122, 233, 199, 0.12);
-      box-shadow: 0 0 18px rgba(122, 233, 199, 0.35);
-      animation: hotspotPulse 2.2s infinite ease-in-out;
-    }
-
-    .show-hotspots .hotspot::after {
-      background: rgba(122, 233, 199, 0.7);
-      box-shadow: 0 0 18px rgba(122, 233, 199, 0.9);
-    }
-
-    @keyframes hotspotPulse {
-      0% {
-        opacity: 0.68;
-        scale: 1;
-      }
-
-      50% {
-        opacity: 1;
-        scale: 1.08;
-      }
-
-      100% {
-        opacity: 0.68;
-        scale: 1;
-      }
-    }
-
-    .hotspot-label {
-      position: absolute;
       left: 50%;
-      top: 86px;
-      transform: translateX(-50%);
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.72);
-      border: 1px solid rgba(122, 233, 199, 0.35);
-      color: #effff9;
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      opacity: 0;
-      white-space: nowrap;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(122, 233, 199, 0.5);
+      box-shadow: 0 0 28px rgba(122, 233, 199, 0.8);
       pointer-events: none;
     }
 
-    .show-hotspots .hotspot-label {
-      opacity: 1;
+    .zone:hover,
+    .zone:active {
+      transform: scale(1.03);
+      background: rgba(122, 233, 199, 0.22);
+      box-shadow:
+        0 0 30px rgba(122, 233, 199, 0.35),
+        inset 0 0 30px rgba(122, 233, 199, 0.22);
     }
 
-    #zone-treehouse {
-      top: 23%;
-      left: 21%;
+    .zones-hidden .zone {
+      border-color: transparent;
+      background: transparent;
+      box-shadow: none;
     }
 
-    #zone-bridge {
+    .zones-hidden .zone::after {
+      opacity: 0;
+    }
+
+    /* Safe non-overlapping mobile-friendly zones */
+    .zone-treehouse {
+      left: 8%;
       top: 31%;
-      left: 50%;
+      width: 30%;
+      height: 11%;
+      border-radius: 34px;
     }
 
-    #zone-lj {
-      top: 59%;
-      left: 5%;
-    }
-
-    #zone-daisey {
-      top: 68%;
+    .zone-bridge {
       left: 43%;
+      top: 39%;
+      width: 42%;
+      height: 10%;
+      border-radius: 34px;
     }
 
-    #zone-cave {
-      top: 75%;
+    .zone-lj {
+      left: 0%;
+      top: 61%;
+      width: 23%;
+      height: 20%;
+      border-radius: 30px;
+    }
+
+    .zone-cave {
       left: 25%;
+      top: 80%;
+      width: 22%;
+      height: 11%;
+      border-radius: 28px;
     }
 
-    .message {
-      position: absolute;
-      left: 50%;
-      bottom: 10vh;
-      transform: translateX(-50%);
-      z-index: 5;
-      width: min(86vw, 680px);
-      min-height: 74px;
-      padding: 20px 22px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: clamp(1.05rem, 4vw, 1.45rem);
-      border-radius: 24px;
-      border: 1px solid rgba(122, 233, 199, 0.45);
-      background: rgba(0, 0, 0, 0.76);
-      box-shadow: 0 0 24px rgba(122, 233, 199, 0.18);
-    }
-
-    .message.show {
-      display: flex;
+    .zone-daisy {
+      left: 48%;
+      top: 72%;
+      width: 27%;
+      height: 17%;
+      border-radius: 32px;
     }
 
     .bottom-ui {
       position: absolute;
       left: 50%;
-      bottom: 2.5vh;
+      bottom: calc(42px + env(safe-area-inset-bottom));
       transform: translateX(-50%);
-      z-index: 6;
       display: flex;
-      gap: 10px;
+      gap: 18px;
+      z-index: 8;
     }
 
-    .ui-btn {
-      padding: 10px 13px;
-      border-radius: 999px;
-      border: 1px solid rgba(122, 233, 199, 0.38);
-      background: rgba(0, 0, 0, 0.72);
+    .bottom-ui button {
+      min-width: 132px;
+      padding: 13px 18px;
+      border-radius: 28px;
+      border: 1px solid rgba(122, 233, 199, 0.55);
+      background: rgba(0, 0, 0, 0.68);
       color: #effff9;
-      font-size: 0.86rem;
+      font-size: 1.05rem;
+      line-height: 1.15;
       cursor: pointer;
+      box-shadow: 0 0 18px rgba(122, 233, 199, 0.14);
+      backdrop-filter: blur(6px);
     }
 
-    .ui-btn:active {
-      transform: scale(0.97);
+    .bottom-ui button:active {
+      transform: scale(0.96);
+    }
+
+    .toast {
+      position: absolute;
+      left: 50%;
+      bottom: calc(132px + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      z-index: 9;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(122, 233, 199, 0.45);
+      color: #effff9;
+      font-size: 0.95rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      text-align: center;
+      max-width: 86vw;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    @media (max-width: 480px) {
+      .title-card {
+        top: calc(7vh + env(safe-area-inset-top));
+        width: 84vw;
+        padding: 24px 18px 26px;
+        border-radius: 40px;
+      }
+
+      .title-card h1 {
+        font-size: 2rem;
+      }
+
+      .title-card p {
+        font-size: 1.15rem;
+      }
+
+      .bottom-ui {
+        gap: 14px;
+        bottom: calc(38px + env(safe-area-inset-bottom));
+      }
+
+      .bottom-ui button {
+        min-width: 124px;
+        padding: 12px 14px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main id="world" class="world">
-
-    <img class="world-image" src="assets/world.png" alt="Wrong Way Dogz Art world" />
+  <main class="world" id="world">
+    <img class="world-image" src="assets/world.png" alt="Wrong Way Dogz Art world scene" />
 
     <div class="vignette"></div>
 
     <section class="title-card">
-      <h1>Wrong Way Dogz Art</h1>
+      <h1>WRONG WAY DOGZ ART</h1>
       <p>A world is forming...</p>
     </section>
 
-    <!-- HOTSPOTS -->
-    <button id="zone-treehouse" class="hotspot" data-message="The treehouse is still waking up."></button>
-    <button id="zone-bridge" class="hotspot" data-message="The bridge hums with teal energy."></button>
-    <button id="zone-lj" class="hotspot" data-message="LJ found something glowing."></button>
-    <button id="zone-daisey" class="hotspot" data-message="Daisey is guarding the path."></button>
-    <button id="zone-cave" class="hotspot" data-message="The cave is sealed for now."></button>
+    <button class="zone zone-treehouse" data-zone="Treehouse" aria-label="Treehouse zone"></button>
+    <button class="zone zone-bridge" data-zone="Bridge" aria-label="Bridge zone"></button>
+    <button class="zone zone-lj" data-zone="LJ" aria-label="LJ zone"></button>
+    <button class="zone zone-cave" data-zone="Cave" aria-label="Cave zone"></button>
+    <button class="zone zone-daisy" data-zone="Daisy" aria-label="Daisy zone"></button>
 
-    <div id="message" class="message"></div>
+    <div class="bottom-ui">
+      <button id="zoneToggle">Hide<br>Zones</button>
+      <button id="soundToggle">Sound<br>Off</button>
+    </div>
 
-    <nav class="bottom-ui">
-      <button id="toggleHotspots" class="ui-btn">Show Zones</button>
-      <button id="audioToggle" class="ui-btn">Sound Off</button>
-    </nav>
+    <div class="toast" id="toast">Zone selected</div>
 
-    <audio id="bgAudio" src="assets/background.mp3" loop preload="auto"></audio>
-
+    <audio id="bgAudio" loop>
+      <source src="assets/forest.mp3" type="audio/mpeg" />
+    </audio>
   </main>
 
   <script>
     const world = document.getElementById("world");
-    const toggleHotspots = document.getElementById("toggleHotspots");
-    const message = document.getElementById("message");
-    const audioToggle = document.getElementById("audioToggle");
+    const zoneToggle = document.getElementById("zoneToggle");
+    const soundToggle = document.getElementById("soundToggle");
+    const toast = document.getElementById("toast");
     const bgAudio = document.getElementById("bgAudio");
 
-    let messageTimer;
-    let audioOn = false;
+    let zonesVisible = true;
+    let soundPlaying = false;
+    let toastTimer;
 
-    function showMessage(text) {
-      clearTimeout(messageTimer);
-      message.textContent = text;
-      message.classList.add("show");
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
 
-      messageTimer = setTimeout(() => {
-        message.classList.remove("show");
-      }, 4000);
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1400);
     }
 
-    toggleHotspots.onclick = () => {
-      world.classList.toggle("show-hotspots");
-      toggleHotspots.textContent =
-        world.classList.contains("show-hotspots") ? "Hide Zones" : "Show Zones";
-    };
-
-    document.querySelectorAll(".hotspot").forEach((spot) => {
-      spot.onclick = () => showMessage(spot.dataset.message);
+    document.querySelectorAll(".zone").forEach((zone) => {
+      zone.addEventListener("click", () => {
+        const zoneName = zone.dataset.zone;
+        showToast(`${zoneName} area is forming...`);
+      });
     });
 
-    audioToggle.onclick = async () => {
+    zoneToggle.addEventListener("click", () => {
+      zonesVisible = !zonesVisible;
+      world.classList.toggle("zones-hidden", !zonesVisible);
+      zoneToggle.innerHTML = zonesVisible ? "Hide<br>Zones" : "Show<br>Zones";
+    });
+
+    soundToggle.addEventListener("click", async () => {
       try {
-        if (!audioOn) {
+        if (!soundPlaying) {
           await bgAudio.play();
-          audioOn = true;
-          audioToggle.textContent = "Sound Playing";
+          soundPlaying = true;
+          soundToggle.innerHTML = "Sound<br>Playing";
         } else {
           bgAudio.pause();
-          audioOn = false;
-          audioToggle.textContent = "Sound Off";
+          soundPlaying = false;
+          soundToggle.innerHTML = "Sound<br>Off";
         }
-      } catch {
-        showMessage("Sound needs a tap to awaken.");
+      } catch (error) {
+        showToast("Tap again to start sound");
       }
-    };
+    });
   </script>
-
 </body>
 </html>
