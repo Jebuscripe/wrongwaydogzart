@@ -135,30 +135,11 @@
       opacity: 1;
     }
 
-    #zone-treehouse {
-      top: 24%;
-      left: 18%;
-    }
-
-    #zone-bridge {
-      top: 34%;
-      left: 54%;
-    }
-
-    #zone-lj {
-      top: 63%;
-      left: 5%;
-    }
-
-    #zone-daisey {
-      top: 72%;
-      left: 45%;
-    }
-
-    #zone-cave {
-      top: 78%;
-      left: 25%;
-    }
+    #zone-treehouse { top: 24%; left: 18%; }
+    #zone-bridge { top: 34%; left: 54%; }
+    #zone-lj { top: 63%; left: 5%; }
+    #zone-daisey { top: 72%; left: 45%; }
+    #zone-cave { top: 78%; left: 25%; }
 
     .message {
       position: absolute;
@@ -174,17 +155,13 @@
       justify-content: center;
       text-align: center;
       font-size: clamp(1.05rem, 4vw, 1.45rem);
-      line-height: 1.25;
       border-radius: 24px;
       border: 1px solid rgba(122, 233, 199, 0.45);
       background: rgba(0, 0, 0, 0.76);
       box-shadow: 0 0 24px rgba(122, 233, 199, 0.18);
-      backdrop-filter: blur(4px);
     }
 
-    .message.show {
-      display: flex;
-    }
+    .message.show { display: flex; }
 
     .bottom-ui {
       position: absolute;
@@ -194,9 +171,6 @@
       z-index: 6;
       display: flex;
       gap: 10px;
-      justify-content: center;
-      align-items: center;
-      width: min(92vw, 700px);
     }
 
     .ui-btn {
@@ -206,50 +180,19 @@
       background: rgba(0, 0, 0, 0.72);
       color: #effff9;
       font-size: 0.86rem;
-      text-decoration: none;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(122, 233, 199, 0.12);
     }
 
     .ui-btn:active {
       transform: scale(0.97);
-    }
-
-    @media (max-width: 600px) {
-      .title-card {
-        top: 3vh;
-        padding: 18px 18px;
-      }
-
-      .hotspot {
-        width: 58px;
-        height: 58px;
-      }
-
-      .hotspot-label {
-        top: 64px;
-      }
-
-      .bottom-ui {
-        bottom: 2vh;
-        gap: 7px;
-      }
-
-      .ui-btn {
-        font-size: 0.75rem;
-        padding: 9px 10px;
-      }
-
-      .message {
-        bottom: 9vh;
-      }
     }
   </style>
 </head>
 
 <body>
   <main id="world" class="world">
-    <img class="world-image" src="assets/world.png" alt="Wrong Way Dogz Art world" />
+
+    <img class="world-image" src="assets/world.png" />
 
     <div class="vignette"></div>
 
@@ -258,35 +201,23 @@
       <p>A world is forming...</p>
     </section>
 
-    <button id="zone-treehouse" class="hotspot" type="button" data-message="The treehouse is still waking up. Something inside is moving.">
-      <span class="hotspot-label">Treehouse</span>
-    </button>
-
-    <button id="zone-bridge" class="hotspot" type="button" data-message="The bridge hums with teal energy. It does not fully trust you yet.">
-      <span class="hotspot-label">Bridge</span>
-    </button>
-
-    <button id="zone-lj" class="hotspot" type="button" data-message="LJ found something glowing. He will not explain.">
-      <span class="hotspot-label">LJ</span>
-    </button>
-
-    <button id="zone-daisey" class="hotspot" type="button" data-message="Daisey is guarding the glowing path.">
-      <span class="hotspot-label">Daisey</span>
-    </button>
-
-    <button id="zone-cave" class="hotspot" type="button" data-message="The cave is sealed for now. Something clinks in a jar.">
-      <span class="hotspot-label">Cave</span>
-    </button>
+    <!-- HOTSPOTS -->
+    <button id="zone-treehouse" class="hotspot" data-message="The treehouse is still waking up."></button>
+    <button id="zone-bridge" class="hotspot" data-message="The bridge hums with teal energy."></button>
+    <button id="zone-lj" class="hotspot" data-message="LJ found something glowing."></button>
+    <button id="zone-daisey" class="hotspot" data-message="Daisey is guarding the path."></button>
+    <button id="zone-cave" class="hotspot" data-message="The cave is sealed for now."></button>
 
     <div id="message" class="message"></div>
 
     <nav class="bottom-ui">
-      <button id="toggleHotspots" class="ui-btn" type="button">Show Zones</button>
-      <a class="ui-btn" href="cave.html">Enter Cave</a>
-      <button id="audioToggle" class="ui-btn" type="button">Sound Off</button>
+      <button id="toggleHotspots" class="ui-btn">Show Zones</button>
+      <button id="audioToggle" class="ui-btn">Sound Off</button>
     </nav>
 
-    <audio id="bgAudio" src="assets/background.mp3" loop></audio>
+    <!-- FIXED AUDIO -->
+    <audio id="bgAudio" src="assets/background.mp3" loop preload="auto"></audio>
+
   </main>
 
   <script>
@@ -306,39 +237,35 @@
 
       messageTimer = setTimeout(() => {
         message.classList.remove("show");
-      }, 4200);
+      }, 4000);
     }
 
-    toggleHotspots.addEventListener("click", () => {
+    toggleHotspots.onclick = () => {
       world.classList.toggle("show-hotspots");
-
-      toggleHotspots.textContent = world.classList.contains("show-hotspots")
-        ? "Hide Zones"
-        : "Show Zones";
-    });
+      toggleHotspots.textContent =
+        world.classList.contains("show-hotspots") ? "Hide Zones" : "Show Zones";
+    };
 
     document.querySelectorAll(".hotspot").forEach((spot) => {
-      spot.addEventListener("click", () => {
-        const text = spot.dataset.message || "Something stirs...";
-        showMessage(text);
-      });
+      spot.onclick = () => showMessage(spot.dataset.message);
     });
 
-    audioToggle.addEventListener("click", async () => {
+    audioToggle.onclick = async () => {
       try {
         if (!audioOn) {
           await bgAudio.play();
           audioOn = true;
-          audioToggle.textContent = "Sound On";
+          audioToggle.textContent = "Sound Playing";
         } else {
           bgAudio.pause();
           audioOn = false;
           audioToggle.textContent = "Sound Off";
         }
-      } catch (error) {
-        showMessage("The sound spirit refused to wake up.");
+      } catch {
+        showMessage("Sound needs a tap to awaken.");
       }
-    });
+    };
   </script>
+
 </body>
 </html>
