@@ -48,172 +48,200 @@
       z-index: 1;
       pointer-events: none;
       background:
-        radial-gradient(circle at center, transparent 35%, rgba(0,0,0,0.55) 100%),
-        linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.65));
+        radial-gradient(circle at center, transparent 35%, rgba(0,0,0,0.45) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.45));
     }
 
     .title-card {
       position: absolute;
-      top: 22px;
+      top: 4vh;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 4;
+      width: min(88vw, 720px);
+      padding: 22px 24px;
       text-align: center;
-      width: min(92vw, 560px);
-      padding: 10px 14px;
+      z-index: 3;
+      border: 1px solid rgba(122, 233, 199, 0.35);
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.38);
-      border: 1px solid rgba(122, 233, 199, 0.24);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 0 24px rgba(122, 233, 199, 0.12);
+      background: rgba(0, 0, 0, 0.72);
+      box-shadow: 0 0 22px rgba(122, 233, 199, 0.16);
+      backdrop-filter: blur(4px);
     }
 
     .title-card h1 {
-      font-size: clamp(1.25rem, 5vw, 2.1rem);
-      letter-spacing: 0.08em;
+      font-size: clamp(1.45rem, 5vw, 2.35rem);
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #effff9;
-      text-shadow: 0 0 12px rgba(122, 233, 199, 0.55);
+      text-shadow: 0 0 14px rgba(122, 233, 199, 0.65);
     }
 
     .title-card p {
-      margin-top: 4px;
-      font-size: clamp(0.8rem, 3vw, 1rem);
-      color: rgba(239, 255, 249, 0.86);
-      letter-spacing: 0.06em;
-    }
-
-    .bottom-ui {
-      position: absolute;
-      left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%);
-      z-index: 4;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: min(92vw, 520px);
-    }
-
-    .ui-btn {
-      border: 1px solid rgba(122, 233, 199, 0.32);
-      background: rgba(0, 0, 0, 0.48);
-      color: #effff9;
-      padding: 11px 15px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      text-decoration: none;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 0 18px rgba(122, 233, 199, 0.10);
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .ui-btn:hover,
-    .ui-btn:active {
-      transform: scale(0.97);
-      background: rgba(0, 0, 0, 0.68);
-      border-color: rgba(122, 233, 199, 0.65);
+      margin-top: 10px;
+      font-size: clamp(1rem, 3.5vw, 1.35rem);
+      letter-spacing: 0.08em;
+      opacity: 0.9;
     }
 
     .hotspot {
       position: absolute;
-      z-index: 3;
-      border-radius: 24px;
-      background: rgba(122, 233, 199, 0);
+      z-index: 4;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
       border: 2px solid rgba(122, 233, 199, 0);
+      background: rgba(122, 233, 199, 0);
       cursor: pointer;
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
     }
 
-    .hotspot:active {
-      transform: scale(0.98);
+    .hotspot::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      background: rgba(122, 233, 199, 0);
+      box-shadow: 0 0 0 rgba(122, 233, 199, 0);
+      transition: 0.25s ease;
     }
 
     .show-hotspots .hotspot {
-      background: rgba(122, 233, 199, 0.08);
-      border-color: rgba(122, 233, 199, 0.35);
+      border-color: rgba(122, 233, 199, 0.55);
+      background: rgba(122, 233, 199, 0.12);
+      box-shadow: 0 0 18px rgba(122, 233, 199, 0.35);
+    }
+
+    .show-hotspots .hotspot::after {
+      background: rgba(122, 233, 199, 0.7);
+      box-shadow: 0 0 18px rgba(122, 233, 199, 0.9);
     }
 
     .hotspot-label {
       position: absolute;
       left: 50%;
-      bottom: -26px;
+      top: 78px;
       transform: translateX(-50%);
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(122, 233, 199, 0.35);
+      color: #effff9;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      opacity: 0;
       white-space: nowrap;
-      font-size: 0.78rem;
-      color: rgba(255, 255, 255, 0);
       pointer-events: none;
-      transition: color 0.2s ease;
-      text-shadow: 0 0 8px #000;
     }
 
     .show-hotspots .hotspot-label {
-      color: rgba(255, 255, 255, 0.9);
+      opacity: 1;
     }
 
     #zone-treehouse {
-      top: 12%;
-      left: 12%;
-      width: 34%;
-      height: 24%;
+      top: 24%;
+      left: 18%;
     }
 
-    #zone-cave {
-      top: 60%;
-      left: 13%;
-      width: 31%;
-      height: 24%;
+    #zone-bridge {
+      top: 34%;
+      left: 54%;
     }
 
     #zone-lj {
-      top: 58%;
-      left: 50%;
-      width: 35%;
-      height: 30%;
-      border-radius: 36px;
+      top: 63%;
+      left: 5%;
+    }
+
+    #zone-daisey {
+      top: 72%;
+      left: 45%;
+    }
+
+    #zone-cave {
+      top: 78%;
+      left: 25%;
     }
 
     .message {
       position: absolute;
       left: 50%;
-      bottom: 92px;
+      bottom: 10vh;
       transform: translateX(-50%);
-      z-index: 6;
-      width: min(88vw, 440px);
-      padding: 12px 14px;
-      border-radius: 18px;
-      background: rgba(0, 0, 0, 0.72);
-      border: 1px solid rgba(122, 233, 199, 0.35);
-      color: #effff9;
+      z-index: 5;
+      width: min(86vw, 680px);
+      min-height: 74px;
+      padding: 20px 22px;
+      display: none;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      font-size: 0.95rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
+      font-size: clamp(1.05rem, 4vw, 1.45rem);
+      line-height: 1.25;
+      border-radius: 24px;
+      border: 1px solid rgba(122, 233, 199, 0.45);
+      background: rgba(0, 0, 0, 0.76);
+      box-shadow: 0 0 24px rgba(122, 233, 199, 0.18);
+      backdrop-filter: blur(4px);
     }
 
     .message.show {
-      opacity: 1;
+      display: flex;
+    }
+
+    .bottom-ui {
+      position: absolute;
+      left: 50%;
+      bottom: 2.5vh;
+      transform: translateX(-50%);
+      z-index: 6;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      width: min(92vw, 700px);
+    }
+
+    .ui-btn {
+      padding: 10px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(122, 233, 199, 0.38);
+      background: rgba(0, 0, 0, 0.72);
+      color: #effff9;
+      font-size: 0.86rem;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(122, 233, 199, 0.12);
+    }
+
+    .ui-btn:active {
+      transform: scale(0.97);
     }
 
     @media (max-width: 600px) {
       .title-card {
-        top: 16px;
+        top: 3vh;
+        padding: 18px 18px;
+      }
+
+      .hotspot {
+        width: 58px;
+        height: 58px;
+      }
+
+      .hotspot-label {
+        top: 64px;
       }
 
       .bottom-ui {
-        bottom: 18px;
+        bottom: 2vh;
+        gap: 7px;
       }
 
       .ui-btn {
-        font-size: 0.86rem;
-        padding: 10px 13px;
+        font-size: 0.75rem;
+        padding: 9px 10px;
       }
 
       .message {
-        bottom: 86px;
+        bottom: 9vh;
       }
     }
   </style>
@@ -230,16 +258,24 @@
       <p>A world is forming...</p>
     </section>
 
-    <button id="zone-treehouse" class="hotspot" type="button" data-message="The treehouse is still waking up.">
+    <button id="zone-treehouse" class="hotspot" type="button" data-message="The treehouse is still waking up. Something inside is moving.">
       <span class="hotspot-label">Treehouse</span>
     </button>
 
-    <button id="zone-cave" class="hotspot" type="button" data-message="The cave is sealed for now. Something is moving inside.">
-      <span class="hotspot-label">Cave</span>
+    <button id="zone-bridge" class="hotspot" type="button" data-message="The bridge hums with teal energy. It does not fully trust you yet.">
+      <span class="hotspot-label">Bridge</span>
     </button>
 
-    <button id="zone-lj" class="hotspot" type="button" data-message="Daisey is guarding the glowing path. She knows more than she’s saying.">
-  <span class="hotspot-label">Daisey</span>
+    <button id="zone-lj" class="hotspot" type="button" data-message="LJ found something glowing. He will not explain.">
+      <span class="hotspot-label">LJ</span>
+    </button>
+
+    <button id="zone-daisey" class="hotspot" type="button" data-message="Daisey is guarding the glowing path.">
+      <span class="hotspot-label">Daisey</span>
+    </button>
+
+    <button id="zone-cave" class="hotspot" type="button" data-message="The cave is sealed for now. Something clinks in a jar.">
+      <span class="hotspot-label">Cave</span>
     </button>
 
     <div id="message" class="message"></div>
@@ -263,8 +299,19 @@
     let messageTimer;
     let audioOn = false;
 
+    function showMessage(text) {
+      clearTimeout(messageTimer);
+      message.textContent = text;
+      message.classList.add("show");
+
+      messageTimer = setTimeout(() => {
+        message.classList.remove("show");
+      }, 4200);
+    }
+
     toggleHotspots.addEventListener("click", () => {
       world.classList.toggle("show-hotspots");
+
       toggleHotspots.textContent = world.classList.contains("show-hotspots")
         ? "Hide Zones"
         : "Show Zones";
@@ -276,16 +323,6 @@
         showMessage(text);
       });
     });
-
-    function showMessage(text) {
-      clearTimeout(messageTimer);
-      message.textContent = text;
-      message.classList.add("show");
-
-      messageTimer = setTimeout(() => {
-        message.classList.remove("show");
-      }, 2600);
-    }
 
     audioToggle.addEventListener("click", async () => {
       try {
@@ -299,7 +336,7 @@
           audioToggle.textContent = "Sound Off";
         }
       } catch (error) {
-        showMessage("Tap again to wake the sound.");
+        showMessage("The sound spirit refused to wake up.");
       }
     });
   </script>
