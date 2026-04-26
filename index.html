@@ -30,7 +30,7 @@ body {
   background: #000;
 }
 
-/* MAIN WORLD IMAGE */
+/* MAIN IMAGE — DO NOT CHANGE */
 .world-image {
   position: absolute;
   inset: 0;
@@ -50,11 +50,11 @@ body {
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(circle at center, rgba(0,0,0,0.05), rgba(0,0,0,0.55)),
-    linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.45));
+    radial-gradient(circle at center, rgba(0,0,0,0.02), rgba(0,0,0,0.42)),
+    linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.48));
 }
 
-/* SMALL LOGO BADGE */
+/* TOP LOGO */
 .logo-badge {
   position: absolute;
   top: max(14px, env(safe-area-inset-top));
@@ -62,9 +62,9 @@ body {
   z-index: 6;
   padding: 10px 14px;
   border-radius: 16px;
-  background: rgba(0, 0, 0, 0.58);
-  border: 1px solid rgba(122, 233, 199, 0.35);
-  box-shadow: 0 0 20px rgba(122, 233, 199, 0.18);
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(122,233,199,0.35);
+  box-shadow: 0 0 20px rgba(122,233,199,0.18);
   backdrop-filter: blur(6px);
 }
 
@@ -88,16 +88,16 @@ body {
   position: absolute;
   top: max(14px, env(safe-area-inset-top));
   right: 14px;
-  z-index: 8;
+  z-index: 9;
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 1px solid rgba(122, 233, 199, 0.45);
-  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(122,233,199,0.45);
+  background: rgba(0,0,0,0.62);
   color: #effff9;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   cursor: pointer;
-  box-shadow: 0 0 18px rgba(122, 233, 199, 0.25);
+  box-shadow: 0 0 18px rgba(122,233,199,0.25);
 }
 
 /* MENU PANEL */
@@ -105,12 +105,12 @@ body {
   position: absolute;
   top: calc(max(14px, env(safe-area-inset-top)) + 58px);
   right: 14px;
-  z-index: 7;
+  z-index: 8;
   width: min(260px, calc(100vw - 28px));
   padding: 14px;
   border-radius: 18px;
-  background: rgba(0, 0, 0, 0.72);
-  border: 1px solid rgba(122, 233, 199, 0.35);
+  background: rgba(0,0,0,0.74);
+  border: 1px solid rgba(122,233,199,0.35);
   box-shadow: 0 0 26px rgba(0,0,0,0.6);
   backdrop-filter: blur(8px);
   display: none;
@@ -121,7 +121,7 @@ body {
 }
 
 .menu-panel h2 {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   letter-spacing: 0.15em;
   margin-bottom: 12px;
   color: #a9f7dc;
@@ -134,8 +134,8 @@ body {
   margin-bottom: 9px;
   padding: 11px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(122, 233, 199, 0.22);
-  background: rgba(122, 233, 199, 0.08);
+  border: 1px solid rgba(122,233,199,0.22);
+  background: rgba(122,233,199,0.08);
   color: #effff9;
   text-decoration: none;
   font-size: 0.9rem;
@@ -143,182 +143,176 @@ body {
   cursor: pointer;
 }
 
-.menu-link:hover,
-.sound-button:hover {
-  background: rgba(122, 233, 199, 0.18);
+/* THREE MAIN UI ENTRANCES */
+.entry-panel {
+  position: absolute;
+  left: 50%;
+  bottom: max(38px, calc(env(safe-area-inset-bottom) + 28px));
+  transform: translateX(-50%);
+  z-index: 7;
+  width: min(92vw, 520px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
-/* CLICKABLE WORLD ZONES */
+.entry-button {
+  min-height: 58px;
+  padding: 10px 8px;
+  border-radius: 18px;
+  border: 1px solid rgba(122,233,199,0.42);
+  background: rgba(0,0,0,0.58);
+  color: #effff9;
+  text-decoration: none;
+  text-align: center;
+  box-shadow:
+    0 0 18px rgba(122,233,199,0.18),
+    inset 0 0 14px rgba(122,233,199,0.08);
+  backdrop-filter: blur(6px);
+  transition: 0.2s ease;
+}
+
+.entry-button:hover,
+.entry-button:active {
+  background: rgba(122,233,199,0.16);
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 28px rgba(122,233,199,0.38),
+    inset 0 0 18px rgba(122,233,199,0.14);
+}
+
+.entry-button strong {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: #a9f7dc;
+}
+
+.entry-button span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  opacity: 0.78;
+}
+
+/* ZONES — UPDATED */
 .zone {
   position: absolute;
   z-index: 4;
-  border: 2px solid rgba(122, 233, 199, 0.55);
-  border-radius: 26px;
-  background: rgba(122, 233, 199, 0.08);
-  box-shadow:
-    0 0 16px rgba(122, 233, 199, 0.28),
-    inset 0 0 18px rgba(122, 233, 199, 0.12);
+  border-radius: 28px;
   cursor: pointer;
   text-decoration: none;
-  transition: 0.2s ease;
+  background: rgba(122,233,199,0.02);
+  border: 1px solid rgba(122,233,199,0.12);
+  box-shadow: 0 0 12px rgba(122,233,199,0.08);
 }
 
 .zone:hover,
 .zone:active {
-  background: rgba(122, 233, 199, 0.16);
-  box-shadow:
-    0 0 28px rgba(122, 233, 199, 0.45),
-    inset 0 0 22px rgba(122, 233, 199, 0.18);
-  transform: scale(1.02);
+  background: rgba(122,233,199,0.13);
+  border-color: rgba(122,233,199,0.5);
+  box-shadow: 0 0 24px rgba(122,233,199,0.35);
 }
 
-.zone span {
-  position: absolute;
-  left: 12px;
-  bottom: 10px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.55);
-  color: #effff9;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  opacity: 0;
-  transition: 0.2s ease;
-}
-
-.zone:hover span,
-.zone:active span {
-  opacity: 1;
-}
-
-/* THREE TRUE WORLD ENTRANCES */
+/* DESKTOP */
 .treehouse-zone {
   left: 3%;
-  top: 27%;
-  width: 40%;
-  height: 20%;
+  top: 24%;
+  width: 38%;
+  height: 17%;
 }
 
 .bridge-zone {
   right: 3%;
-  top: 34%;
-  width: 51%;
-  height: 27%;
+  top: 33%;
+  width: 48%;
+  height: 22%;
 }
 
 .cave-zone {
-  left: 25%;
-  bottom: 15%;
-  width: 38%;
-  height: 18%;
+  left: 22%;
+  bottom: 20%;
+  width: 39%;
+  height: 14%;
 }
 
-/* BOTTOM SAFE NOTE */
-.footer-note {
-  position: absolute;
-  left: 50%;
-  bottom: max(16px, env(safe-area-inset-bottom));
-  transform: translateX(-50%);
-  z-index: 5;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.48);
-  border: 1px solid rgba(122,233,199,0.22);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  opacity: 0.82;
-  white-space: nowrap;
-}
-
-/* MOBILE TUNING */
+/* MOBILE */
 @media (max-width: 600px) {
-  .logo-badge {
-    max-width: 230px;
-    padding: 9px 12px;
-  }
-
-  .logo-badge h1 {
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-  }
-
-  .logo-badge p {
-    font-size: 0.6rem;
-  }
 
   .treehouse-zone {
     left: 3%;
-    top: 30%;
-    width: 40%;
-    height: 18%;
+    top: 26%;
+    width: 38%;
+    height: 16%;
   }
 
   .bridge-zone {
     right: 3%;
-    top: 36%;
-    width: 51%;
-    height: 25%;
+    top: 34%;
+    width: 48%;
+    height: 21%;
   }
 
   .cave-zone {
-    left: 25%;
-    bottom: 16%;
+    left: 23%;
+    bottom: 23%;
     width: 38%;
-    height: 17%;
-  }
-
-  .zone span {
-    display: none;
+    height: 13%;
   }
 }
 </style>
 </head>
 
 <body>
-  <main class="world">
+<main class="world">
 
-    <img src="assets/world.png" alt="Wrong Way Dogz Art world" class="world-image" />
+  <img src="assets/world.png" class="world-image" />
 
-    <div class="vignette"></div>
+  <div class="vignette"></div>
 
-    <section class="logo-badge">
-      <h1>WRONG WAY<br>DOGZ ART</h1>
-      <p>A world is forming...</p>
-    </section>
+  <section class="logo-badge">
+    <h1>WRONG WAY<br>DOGZ ART</h1>
+    <p>A world is forming...</p>
+  </section>
 
-    <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
+  <button class="menu-button" id="menuButton">☰</button>
 
-    <nav class="menu-panel" id="menuPanel">
-      <h2>WORLD MENU</h2>
+  <nav class="menu-panel" id="menuPanel">
+    <h2>WORLD MENU</h2>
+    <a href="#" class="menu-link">🐾 LJ — Coming Soon</a>
+    <a href="#" class="menu-link">🐕 Daisy — Coming Soon</a>
+    <a href="#" class="menu-link">🎨 Art Archive — Coming Soon</a>
+    <a href="#" class="menu-link">🌀 Side Apps — Coming Soon</a>
+    <button class="sound-button" id="soundButton">🔊 Sound: Off</button>
+  </nav>
 
-      <a href="#" class="menu-link">🐾 LJ — Coming Soon</a>
-      <a href="#" class="menu-link">🐕 Daisy — Coming Soon</a>
-      <a href="#" class="menu-link">🎨 Art Archive — Coming Soon</a>
-      <a href="#" class="menu-link">🌀 Side Apps — Coming Soon</a>
+  <a href="#" class="zone treehouse-zone"></a>
+  <a href="#" class="zone bridge-zone"></a>
+  <a href="#" class="zone cave-zone"></a>
 
-      <button class="sound-button" id="soundButton">🔊 Sound: Off</button>
-    </nav>
-
-    <!-- TRUE WORLD NAVIGATION ZONES -->
-    <a href="#" class="zone treehouse-zone">
-      <span>Treehouse</span>
+  <section class="entry-panel">
+    <a href="#" class="entry-button">
+      <strong>ENTER WORLD</strong>
+      <span>Coming Soon</span>
     </a>
 
-    <a href="#" class="zone bridge-zone">
-      <span>Bridge</span>
+    <a href="#" class="entry-button">
+      <strong>APPS</strong>
+      <span>Wrong Way Tools</span>
     </a>
 
-    <a href="#" class="zone cave-zone">
-      <span>Cave</span>
+    <a href="#" class="entry-button">
+      <strong>ARCHIVE</strong>
+      <span>Art + Lore</span>
     </a>
+  </section>
 
-    <div class="footer-note">Tap the glowing paths</div>
+  <audio id="bgAudio" loop>
+    <source src="assets/forest.mp3" type="audio/mpeg" />
+  </audio>
 
-    <audio id="bgAudio" loop>
-      <source src="assets/forest.mp3" type="audio/mpeg" />
-    </audio>
-
-  </main>
+</main>
 
 <script>
 const menuButton = document.getElementById("menuButton");
@@ -328,17 +322,17 @@ const bgAudio = document.getElementById("bgAudio");
 
 let soundOn = false;
 
-menuButton.addEventListener("click", () => {
+menuButton.onclick = () => {
   menuPanel.classList.toggle("open");
-});
+};
 
-soundButton.addEventListener("click", async () => {
+soundButton.onclick = async () => {
   if (!soundOn) {
     try {
       await bgAudio.play();
       soundOn = true;
       soundButton.textContent = "🔊 Sound: On";
-    } catch (error) {
+    } catch {
       soundButton.textContent = "🔇 Tap again to allow sound";
     }
   } else {
@@ -346,7 +340,7 @@ soundButton.addEventListener("click", async () => {
     soundOn = false;
     soundButton.textContent = "🔊 Sound: Off";
   }
-});
+};
 </script>
 
 </body>
