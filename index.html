@@ -24,7 +24,7 @@ html, body {
 .world {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -36,126 +36,197 @@ html, body {
   object-fit: cover;
 }
 
-/* TITLE PANEL */
 .title-box {
   position: absolute;
-  top: 5%;
+  top: 4%;
   left: 50%;
   transform: translateX(-50%);
-  width: 85%;
+  width: 84%;
   max-width: 420px;
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(0,0,0,0.6);
+  padding: 18px 16px;
+  border-radius: 22px;
+  background: rgba(0,0,0,0.68);
+  border: 1px solid rgba(122,233,199,0.25);
   backdrop-filter: blur(10px);
   text-align: center;
+  z-index: 5;
 }
 
 .title-box h1 {
-  font-size: 22px;
-  letter-spacing: 6px;
+  font-size: clamp(20px, 6vw, 34px);
+  letter-spacing: 7px;
+  line-height: 1.55;
 }
 
 .title-box p {
   margin-top: 10px;
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: clamp(14px, 4vw, 22px);
+  letter-spacing: 3px;
+  opacity: 0.9;
 }
 
-/* ZONES */
 .zone {
   position: absolute;
-  border-radius: 25px;
-  background: rgba(122,233,199,0.15);
-  border: 2px solid rgba(122,233,199,0.5);
+  border-radius: 26px;
+  background: rgba(122,233,199,0.22);
+  border: 3px solid rgba(122,233,199,0.62);
+  z-index: 4;
+  cursor: pointer;
 }
 
-/* INDIVIDUAL POSITIONS (FIXED NON-OVERLAP) */
+.zones-hidden .zone {
+  background: transparent;
+  border-color: transparent;
+}
 
-/* Treehouse (top-left) */
+/* SAFE NON-OVERLAPPING MOBILE-FIRST ZONES */
+
 .zone-tree {
-  top: 28%;
+  top: 37%;
   left: 8%;
-  width: 28%;
-  height: 12%;
+  width: 30%;
+  height: 11%;
 }
 
-/* Bridge / upper middle */
 .zone-bridge {
-  top: 32%;
-  right: 8%;
-  width: 32%;
-  height: 12%;
+  top: 45%;
+  right: 15%;
+  width: 42%;
+  height: 10%;
 }
 
-/* Cave (left lower, raised slightly) */
 .zone-cave {
-  bottom: 28%;
-  left: 6%;
-  width: 30%;
-  height: 16%;
+  top: 66%;
+  left: 0%;
+  width: 23%;
+  height: 20%;
 }
 
-/* Lab / center bottom (no overlap now) */
 .zone-lab {
-  bottom: 18%;
-  left: 40%;
-  width: 28%;
-  height: 12%;
+  top: 85%;
+  left: 25%;
+  width: 24%;
+  height: 11%;
 }
 
-/* Dog (right lower, lifted slightly) */
 .zone-dog {
-  bottom: 28%;
-  right: 6%;
-  width: 30%;
-  height: 16%;
+  top: 77%;
+  right: 25%;
+  width: 28%;
+  height: 17%;
 }
 
-/* BUTTONS */
 .controls {
   position: absolute;
-  bottom: 8%;
-  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: calc(24px + env(safe-area-inset-bottom));
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 28px;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .btn {
-  padding: 10px 18px;
-  border-radius: 20px;
-  background: rgba(0,0,0,0.7);
-  border: 1px solid rgba(255,255,255,0.2);
-  font-size: 14px;
+  min-width: 118px;
+  padding: 13px 18px;
+  border-radius: 24px;
+  background: rgba(0,0,0,0.78);
+  border: 1px solid rgba(122,233,199,0.35);
+  color: #effff9;
+  font-size: 18px;
+  line-height: 1.15;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(122,233,199,0.18);
+}
+
+@media (min-width: 700px) {
+  .title-box {
+    top: 5%;
+  }
+
+  .zone-tree {
+    top: 36%;
+    left: 12%;
+    width: 22%;
+    height: 12%;
+  }
+
+  .zone-bridge {
+    top: 44%;
+    right: 18%;
+    width: 32%;
+    height: 10%;
+  }
+
+  .zone-cave {
+    top: 65%;
+    left: 8%;
+    width: 20%;
+    height: 20%;
+  }
+
+  .zone-lab {
+    top: 83%;
+    left: 35%;
+    width: 20%;
+    height: 11%;
+  }
+
+  .zone-dog {
+    top: 76%;
+    right: 25%;
+    width: 22%;
+    height: 17%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="world">
+<div class="world" id="world">
 
-  <img src="assets/world.png" alt="World" />
+  <img src="assets/world.png" alt="Wrong Way Dogz Art world" />
 
   <div class="title-box">
-    <h1>WRONG WAY DOGZ ART</h1>
+    <h1>WRONG WAY<br>DOGZ ART</h1>
     <p>A world is forming...</p>
   </div>
 
-  <!-- ZONES -->
-  <div class="zone zone-tree"></div>
-  <div class="zone zone-bridge"></div>
-  <div class="zone zone-cave"></div>
-  <div class="zone zone-lab"></div>
-  <div class="zone zone-dog"></div>
+  <div class="zone zone-tree" onclick="zoneTap('Treehouse')"></div>
+  <div class="zone zone-bridge" onclick="zoneTap('Bridge')"></div>
+  <div class="zone zone-cave" onclick="zoneTap('Cave')"></div>
+  <div class="zone zone-lab" onclick="zoneTap('Lab')"></div>
+  <div class="zone zone-dog" onclick="zoneTap('Daisy')"></div>
 
-  <!-- CONTROLS -->
   <div class="controls">
-    <div class="btn">Hide Zones</div>
-    <div class="btn">Sound Off</div>
+    <button class="btn" onclick="toggleZones()">Hide<br>Zones</button>
+    <button class="btn" onclick="toggleSound()">Sound<br>Off</button>
   </div>
 
 </div>
+
+<script>
+let zonesVisible = true;
+let soundOn = false;
+
+function toggleZones() {
+  zonesVisible = !zonesVisible;
+  document.getElementById("world").classList.toggle("zones-hidden", !zonesVisible);
+  event.currentTarget.innerHTML = zonesVisible ? "Hide<br>Zones" : "Show<br>Zones";
+}
+
+function toggleSound() {
+  soundOn = !soundOn;
+  event.currentTarget.innerHTML = soundOn ? "Sound<br>On" : "Sound<br>Off";
+}
+
+function zoneTap(name) {
+  alert(name + " is forming...");
+}
+</script>
 
 </body>
 </html>
