@@ -2,344 +2,261 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Wrong Way Dogz Art</title>
 
 <style>
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  font-family: Arial, sans-serif;
   background: #000;
-  font-family: Arial, Helvetica, sans-serif;
   color: #effff9;
 }
 
+/* WORLD */
 .world {
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
-  background: #000;
 }
 
-/* MAIN IMAGE */
-.world-image {
+/* BACKGROUND IMAGE */
+.world img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  z-index: 0;
-  user-select: none;
-  -webkit-user-drag: none;
 }
 
-/* SOFTER ATMOSPHERE */
+/* ATMOSPHERE */
 .vignette {
   position: absolute;
   inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6));
   z-index: 2;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at center,
-      rgba(0,0,0,0.02) 0%,
-      rgba(0,0,0,0.18) 70%,
-      rgba(0,0,0,0.38) 100%);
 }
 
-/* PLACED WORLD LIGHTING */
-.light-glow {
+/* FLICKER LIGHT */
+.flicker {
   position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 40% 60%, rgba(255,180,80,0.15), transparent 60%);
+  animation: flicker 3s infinite;
+  z-index: 3;
   pointer-events: none;
-  border-radius: 50%;
-  filter: blur(55px);
-  opacity: 0.26;
-  z-index: 1;
-  animation: breatheGlow 5s ease-in-out infinite;
 }
 
-.glow-treehouse {
-  width: 320px;
-  height: 260px;
-  top: 11%;
-  left: 14%;
-  background: rgba(255, 188, 95, 0.65);
+@keyframes flicker {
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
-.glow-bridge {
-  width: 260px;
-  height: 220px;
-  top: 24%;
-  left: 47%;
-  background: rgba(255, 202, 120, 0.45);
+/* TEAL ENERGY PULSE */
+.tealPulse {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 60% 70%, rgba(0,255,200,0.08), transparent 60%);
+  animation: pulse 4s infinite;
+  z-index: 3;
+  pointer-events: none;
 }
 
-.glow-tree-lantern {
-  width: 250px;
-  height: 260px;
-  top: 44%;
-  left: 12%;
-  background: rgba(255, 178, 80, 0.5);
+@keyframes pulse {
+  0%,100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
 }
 
-.glow-cave {
-  width: 320px;
-  height: 260px;
-  bottom: 11%;
-  left: 28%;
-  background: rgba(122, 233, 199, 0.48);
+/* DRIFT EFFECT */
+.drift {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(255,255,255,0.02), transparent);
+  animation: drift 12s linear infinite;
+  z-index: 3;
+  pointer-events: none;
 }
 
-.glow-right-purple {
-  width: 190px;
-  height: 190px;
-  bottom: 6%;
-  right: 2%;
-  background: rgba(158, 89, 255, 0.32);
-}
-
-@keyframes breatheGlow {
-  0%, 100% {
-    opacity: 0.20;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.31;
-    transform: scale(1.04);
-  }
+@keyframes drift {
+  from { transform: translateY(-20%); }
+  to { transform: translateY(20%); }
 }
 
 /* TITLE */
 .title-box {
   position: absolute;
-  top: 3.2%;
-  left: 3.5%;
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 25px;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
   z-index: 5;
-  padding: 18px 24px;
-  border-radius: 26px;
-  background: rgba(0, 0, 0, 0.72);
-  border: 1px solid rgba(122, 233, 199, 0.35);
-  box-shadow: 0 0 24px rgba(122, 233, 199, 0.12);
 }
 
 .title-box h1 {
-  font-size: 25px;
-  letter-spacing: 7px;
-  line-height: 1.25;
+  font-size: 18px;
+  letter-spacing: 2px;
 }
 
 .title-box p {
-  margin-top: 8px;
-  font-size: 21px;
-  letter-spacing: 2px;
-  opacity: 0.9;
+  font-size: 12px;
+  opacity: 0.7;
 }
 
 /* MENU BUTTON */
-.menu-toggle {
+.menu-btn {
   position: absolute;
-  top: 3.5%;
-  right: 3.5%;
-  z-index: 8;
-  width: 96px;
-  height: 96px;
+  top: 4%;
+  right: 4%;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  border: 1px solid rgba(122, 233, 199, 0.45);
-  background: rgba(0, 0, 0, 0.72);
-  color: #effff9;
-  font-size: 50px;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 0 28px rgba(122, 233, 199, 0.16);
+  z-index: 5;
 }
 
-/* WORLD MENU */
-.world-menu {
+/* MENU PANEL */
+.menu {
   position: absolute;
-  top: 16%;
-  right: 3.5%;
-  width: min(68vw, 540px);
-  z-index: 7;
-  padding: 28px 30px;
-  border-radius: 30px;
-  background: rgba(0, 0, 0, 0.78);
-  border: 1px solid rgba(122, 233, 199, 0.35);
-  box-shadow: 0 0 38px rgba(0, 0, 0, 0.5);
+  top: 80px;
+  right: 20px;
+  width: 260px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px);
   display: none;
+  z-index: 6;
 }
 
-.world-menu.open {
+.menu.active {
   display: block;
 }
 
-.world-menu h2 {
-  color: #a9f7dc;
-  font-size: 28px;
-  letter-spacing: 8px;
-  margin-bottom: 24px;
+.menu h2 {
+  margin-bottom: 10px;
+  color: #7ae9c7;
 }
 
 .menu-item {
-  width: 100%;
-  padding: 22px 26px;
-  margin-bottom: 18px;
-  border-radius: 22px;
-  background: rgba(122, 233, 199, 0.09);
-  border: 1px solid rgba(122, 233, 199, 0.28);
-  color: #effff9;
-  font-size: 28px;
-  text-align: left;
-}
-
-/* CLICK ZONES */
-.zone {
-  position: absolute;
-  z-index: 4;
-  border: 4px solid rgba(122, 233, 199, 0.62);
-  border-radius: 44px;
-  background: rgba(122, 233, 199, 0.08);
-  box-shadow:
-    0 0 18px rgba(122, 233, 199, 0.18),
-    inset 0 0 18px rgba(122, 233, 199, 0.07);
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
   cursor: pointer;
 }
 
-.zone:active {
-  background: rgba(122, 233, 199, 0.22);
-  box-shadow: 0 0 34px rgba(122, 233, 199, 0.5);
-}
-
-/* CURRENT SAFE ZONE PLACEMENTS */
-.zone-tree {
-  top: 36%;
-  left: 3%;
-  width: 40%;
-  height: 18%;
-}
-
-.zone-bridge {
-  top: 42%;
-  right: 3%;
-  width: 51%;
-  height: 27%;
-}
-
-.zone-cave {
+/* GUIDE TEXT */
+.guide {
+  position: absolute;
   bottom: 8%;
-  left: 25%;
-  width: 38%;
-  height: 17%;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.7;
+  animation: fadeOut 6s forwards;
+  z-index: 5;
 }
 
-/* MOBILE TWEAKS */
-@media (max-width: 600px) {
-  .title-box {
-    top: 3%;
-    left: 3%;
-    padding: 16px 22px;
-  }
-
-  .title-box h1 {
-    font-size: 23px;
-    letter-spacing: 6px;
-  }
-
-  .title-box p {
-    font-size: 20px;
-  }
-
-  .menu-toggle {
-    width: 92px;
-    height: 92px;
-    font-size: 48px;
-  }
-
-  .world-menu {
-    top: 17%;
-    right: 3.5%;
-    width: 68vw;
-    padding: 26px 28px;
-  }
-
-  .menu-item {
-    font-size: 27px;
-  }
+@keyframes fadeOut {
+  0% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { opacity: 0; }
 }
+
 </style>
 </head>
 
 <body>
+
 <div class="world">
 
-  <img class="world-image" src="assets/world.png" alt="Wrong Way Dogz Art World" />
+  <!-- BACKGROUND -->
+  <img src="assets/world.png" alt="world"/>
 
-  <!-- placed lighting -->
-  <div class="light-glow glow-treehouse"></div>
-  <div class="light-glow glow-bridge"></div>
-  <div class="light-glow glow-tree-lantern"></div>
-  <div class="light-glow glow-cave"></div>
-  <div class="light-glow glow-right-purple"></div>
-
+  <!-- EFFECTS -->
   <div class="vignette"></div>
+  <div class="flicker"></div>
+  <div class="tealPulse"></div>
+  <div class="drift"></div>
 
+  <!-- TITLE -->
   <div class="title-box">
-    <h1>WRONG WAY<br>DOGZ ART</h1>
+    <h1>WRONG WAY DOGZ ART</h1>
     <p>A world is forming...</p>
   </div>
 
-  <button class="menu-toggle" id="menuToggle">☰</button>
+  <!-- MENU BUTTON -->
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
-  <div class="world-menu" id="worldMenu">
+  <!-- MENU -->
+  <div class="menu" id="menu">
     <h2>WORLD MENU</h2>
-    <button class="menu-item">🐾 LJ — Coming Soon</button>
-    <button class="menu-item">🐕 Daisy — Coming Soon</button>
-    <button class="menu-item">🎨 Art Archive — Coming Soon</button>
-    <button class="menu-item">🌀 Side Apps — Coming Soon</button>
-    <button class="menu-item" id="soundToggle">🔇 Sound: Off</button>
+
+    <div class="menu-item" onclick="go('world.html')">🌍 Enter World</div>
+    <div class="menu-item" onclick="go('apps.html')">🌀 Apps</div>
+    <div class="menu-item" onclick="go('archive.html')">🎨 Archive</div>
+    <div class="menu-item" onclick="go('lj.html')">🐾 LJ</div>
+    <div class="menu-item" onclick="go('daisy.html')">🐕 Daisy</div>
+
+    <div class="menu-item" onclick="toggleSound()" id="soundToggle">🔊 Sound: Off</div>
   </div>
 
-  <!-- click zones -->
-  <div class="zone zone-tree" title="Tree Hub"></div>
-  <div class="zone zone-bridge" title="Bridge / Pixel Guy"></div>
-  <div class="zone zone-cave" title="Cave / Art Archive"></div>
-
-  <audio id="bgSound" loop>
-    <source src="assets/forest.mp3" type="audio/mpeg" />
-  </audio>
+  <!-- GUIDE -->
+  <div class="guide">Tap the menu or explore the world</div>
 
 </div>
 
+<!-- AUDIO -->
+<audio id="bgSound" loop>
+  <source src="assets/forest.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-const menuToggle = document.getElementById("menuToggle");
-const worldMenu = document.getElementById("worldMenu");
-const soundToggle = document.getElementById("soundToggle");
-const bgSound = document.getElementById("bgSound");
 
+const menu = document.getElementById("menu");
+
+function toggleMenu() {
+  menu.classList.toggle("active");
+}
+
+/* NAVIGATION */
+function go(page) {
+  window.location.href = page;
+}
+
+/* SOUND */
 let soundOn = false;
+const audio = document.getElementById("bgSound");
+const toggleBtn = document.getElementById("soundToggle");
 
-menuToggle.addEventListener("click", () => {
-  worldMenu.classList.toggle("open");
-});
-
-soundToggle.addEventListener("click", () => {
-  soundOn = !soundOn;
-
-  if (soundOn) {
-    bgSound.play();
-    soundToggle.textContent = "🔊 Sound: On";
+function toggleSound() {
+  if (!soundOn) {
+    audio.play();
+    toggleBtn.innerText = "🔊 Sound: On";
+    soundOn = true;
   } else {
-    bgSound.pause();
-    soundToggle.textContent = "🔇 Sound: Off";
+    audio.pause();
+    toggleBtn.innerText = "🔇 Sound: Off";
+    soundOn = false;
   }
-});
+}
+
 </script>
 
 </body>
