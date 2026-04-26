@@ -25,15 +25,32 @@ html, body {
   position: relative;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
+  background: #000;
 }
 
-/* BACKGROUND */
-.world img {
+/* BACKGROUND IMAGE */
+.world-image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* DARK ATMOSPHERE LAYER */
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, rgba(0,0,0,0.05), rgba(0,0,0,0.45)),
+    linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.35));
 }
 
 /* TITLE PANEL */
@@ -43,124 +60,238 @@ html, body {
   left: 50%;
   transform: translateX(-50%);
   width: 85%;
-  max-width: 420px;
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(0,0,0,0.6);
+  max-width: 430px;
+  padding: 24px 18px;
+  border-radius: 26px;
+  background: rgba(0,0,0,0.68);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   text-align: center;
+  z-index: 4;
+  box-shadow: 0 0 35px rgba(0,0,0,0.55);
+  pointer-events: none;
 }
 
 .title-box h1 {
-  font-size: 26px;
-  letter-spacing: 4px;
+  font-size: clamp(26px, 7vw, 38px);
+  line-height: 1.25;
+  letter-spacing: 8px;
+  font-weight: 700;
+  text-shadow: 0 0 15px rgba(122,233,199,0.25);
 }
 
 .title-box p {
-  margin-top: 10px;
-  font-size: 14px;
-  opacity: 0.8;
+  margin-top: 18px;
+  font-size: clamp(17px, 4vw, 22px);
+  letter-spacing: 2px;
+  opacity: 0.9;
 }
 
-/* ZONES BASE */
+/* CLICK ZONES */
 .zone {
   position: absolute;
-  border: 2px solid rgba(122,233,199,0.6);
-  border-radius: 20px;
-  background: rgba(122,233,199,0.15);
+  z-index: 3;
+  display: block;
+  border-radius: 26px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* INDIVIDUAL ZONES (NON-OVERLAPPING) */
-
-/* TREE / TOP LEFT */
-.zone-tree {
-  top: 28%;
-  left: 10%;
-  width: 120px;
-  height: 80px;
+/* DEBUG / VISIBLE ZONES */
+body.show-zones .zone {
+  border: 2px solid rgba(122,233,199,0.65);
+  background: rgba(122,233,199,0.16);
+  box-shadow:
+    inset 0 0 24px rgba(122,233,199,0.14),
+    0 0 12px rgba(122,233,199,0.18);
 }
 
-/* BRIDGE / TOP RIGHT */
+/* TAP FEEDBACK */
+.zone:active {
+  background: rgba(122,233,199,0.28);
+  box-shadow: 0 0 28px rgba(122,233,199,0.55);
+}
+
+/* MAP REGIONS */
+
+/* TREEHOUSE / PLATFORM / MAIN HUB */
+.zone-treehouse {
+  top: 19%;
+  left: 3%;
+  width: 40%;
+  height: 24%;
+}
+
+/* BRIDGE / ENTER WORLD */
 .zone-bridge {
-  top: 32%;
-  right: 10%;
-  width: 150px;
-  height: 80px;
+  top: 25%;
+  right: 3%;
+  width: 51%;
+  height: 25%;
 }
 
-/* CAVE LEFT */
-.zone-cave-left {
-  bottom: 32%;
-  left: 8%;
-  width: 110px;
-  height: 110px;
+/* LJ / CHAOS */
+.zone-lj {
+  top: 54%;
+  left: 0%;
+  width: 31%;
+  height: 31%;
 }
 
-/* CAVE RIGHT (DAISY AREA) */
-.zone-cave-right {
-  bottom: 30%;
-  right: 12%;
-  width: 120px;
-  height: 120px;
+/* PIXEL GUY / GUIDE */
+.zone-pixel {
+  top: 52%;
+  right: 3%;
+  width: 34%;
+  height: 32%;
 }
 
-/* CENTER LOWER SMALL */
-.zone-center {
-  bottom: 22%;
-  left: 40%;
-  width: 90px;
-  height: 70px;
+/* CAVE / LAB / EXPERIMENTS */
+.zone-cave {
+  top: 70%;
+  left: 25%;
+  width: 38%;
+  height: 18%;
+  border-radius: 50px;
 }
 
-/* BUTTONS */
+/* CONTROLS */
 .controls {
   position: absolute;
-  bottom: 12%;
+  left: 0;
+  bottom: calc(24px + env(safe-area-inset-bottom));
   width: 100%;
+  padding: 0 10%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  gap: 18px;
+  z-index: 6;
 }
 
-.btn {
-  padding: 10px 20px;
-  border-radius: 20px;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.2);
+.control-btn {
+  min-width: 135px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(122,233,199,0.28);
+  background: rgba(0,0,0,0.68);
+  color: #effff9;
+  font-size: 22px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.45);
 }
 
-/* SAFE MOBILE OFFSET */
-@media (max-height: 700px) {
+.control-btn:active {
+  transform: scale(0.97);
+  background: rgba(0,0,0,0.82);
+}
+
+/* SMALL PHONE FIX */
+@media (max-height: 740px) {
+  .title-box {
+    top: 4%;
+    padding: 18px 14px;
+  }
+
+  .title-box h1 {
+    letter-spacing: 6px;
+  }
+
+  .title-box p {
+    margin-top: 12px;
+  }
+
   .controls {
-    bottom: 16%;
+    bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .control-btn {
+    font-size: 20px;
+    min-width: 125px;
+    padding: 12px 16px;
+  }
+}
+
+/* VERY NARROW PHONES */
+@media (max-width: 380px) {
+  .controls {
+    padding: 0 7%;
+  }
+
+  .control-btn {
+    min-width: 120px;
+    font-size: 19px;
   }
 }
 </style>
 </head>
 
-<body>
+<body class="show-zones">
 
 <div class="world">
-  <img src="assets/world.png" alt="World">
+
+  <img class="world-image" src="assets/world.png" alt="Wrong Way Dogz Art world" />
+  <div class="vignette"></div>
 
   <div class="title-box">
     <h1>WRONG WAY DOGZ ART</h1>
     <p>A world is forming...</p>
   </div>
 
-  <!-- ZONES -->
-  <div class="zone zone-tree"></div>
-  <div class="zone zone-bridge"></div>
-  <div class="zone zone-cave-left"></div>
-  <div class="zone zone-cave-right"></div>
-  <div class="zone zone-center"></div>
+  <!-- CLICKABLE MAP REGIONS -->
+  <a class="zone zone-treehouse" href="#" aria-label="Treehouse hub"></a>
+  <a class="zone zone-bridge" href="#" aria-label="Enter the world"></a>
+  <a class="zone zone-lj" href="#" aria-label="LJ chaos zone"></a>
+  <a class="zone zone-pixel" href="#" aria-label="Pixel Guy guide"></a>
+  <a class="zone zone-cave" href="#" aria-label="Cave experiments"></a>
+
+  <!-- OPTIONAL AUDIO -->
+  <audio id="ambientAudio" loop>
+    <source src="assets/ambient.mp3" type="audio/mpeg" />
+  </audio>
 
   <!-- CONTROLS -->
   <div class="controls">
-    <div class="btn">Hide Zones</div>
-    <div class="btn">Sound Off</div>
+    <button class="control-btn" id="zoneToggle">Hide Zones</button>
+    <button class="control-btn" id="soundToggle">Sound Off</button>
   </div>
 
 </div>
+
+<script>
+const zoneToggle = document.getElementById("zoneToggle");
+const soundToggle = document.getElementById("soundToggle");
+const audio = document.getElementById("ambientAudio");
+
+let soundOn = false;
+
+zoneToggle.addEventListener("click", () => {
+  document.body.classList.toggle("show-zones");
+
+  if (document.body.classList.contains("show-zones")) {
+    zoneToggle.textContent = "Hide Zones";
+  } else {
+    zoneToggle.textContent = "Show Zones";
+  }
+});
+
+soundToggle.addEventListener("click", async () => {
+  try {
+    if (!soundOn) {
+      await audio.play();
+      soundOn = true;
+      soundToggle.textContent = "Sound On";
+    } else {
+      audio.pause();
+      soundOn = false;
+      soundToggle.textContent = "Sound Off";
+    }
+  } catch (error) {
+    soundToggle.textContent = "Sound Error";
+  }
+});
+</script>
 
 </body>
 </html>
