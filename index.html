@@ -1,201 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Wrong Way Dogz Art</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-:root {
-  --gold: #d8b46a;
-  --text: #fff7df;
-}
+  <title>Wrong Way Dogz Art</title>
+  <link rel="icon" type="image/jpeg" href="assets/favoriteicon.jpg" />
 
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  overflow: hidden;
-  font-family: Georgia, serif;
-  background: #000;
-  color: var(--text);
-}
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: #050807;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-.hero {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-image: url("assets/welcome.png");
-  background-size: cover;
-  background-position: center;
-}
+    body {
+      min-height: 100vh;
+    }
 
-.vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, transparent 55%, rgba(0,0,0,0.65));
-  pointer-events: none;
-}
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #050807 url("assets/loading.png") center / cover no-repeat;
+      z-index: 10;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
 
-.audio-btn,
-.menu-btn {
-  position: absolute;
-  top: 18px;
-  z-index: 5;
-  background: rgba(0,0,0,0.38);
-  border: 1px solid rgba(255,255,255,0.28);
-  color: var(--text);
-  font-size: 1.4rem;
-  border-radius: 10px;
-  width: 48px;
-  height: 48px;
-  cursor: pointer;
-}
+    .loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
 
-.audio-btn {
-  left: 18px;
-}
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #050807;
+    }
 
-.menu-btn {
-  right: 18px;
-}
+    .hero picture,
+    .hero img {
+      display: block;
+      width: 100%;
+      height: 100vh;
+    }
 
-.menu {
-  position: absolute;
-  top: 80px;
-  right: 18px;
-  z-index: 6;
-  width: 240px;
-  padding: 14px;
-  background: rgba(0,0,0,0.72);
-  border: 1px solid rgba(216,180,106,0.35);
-  border-radius: 12px;
-  display: none;
-}
+    .hero img {
+      object-fit: cover;
+      object-position: center center;
+    }
 
-.menu.open {
-  display: block;
-}
+    .top-button {
+      position: fixed;
+      top: 16px;
+      z-index: 20;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 50%;
+      background: rgba(0,0,0,0.45);
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
 
-.menu a {
-  display: block;
-  color: var(--text);
-  text-decoration: none;
-  padding: 10px 0;
-}
+    .audio-button {
+      left: 16px;
+    }
 
-.menu a:hover {
-  color: var(--gold);
-}
+    .menu-button {
+      right: 16px;
+    }
 
-.enter {
-  position: absolute;
-  left: 50%;
-  bottom: 115px;
-  z-index: 4;
-  transform: translateX(-50%);
-  color: var(--text);
-  text-decoration: none;
-  font-size: clamp(1.4rem, 4vw, 2.4rem);
-  letter-spacing: 0.12em;
-  text-shadow: 0 3px 12px #000;
-}
+    .menu-panel {
+      position: fixed;
+      top: 74px;
+      right: 16px;
+      z-index: 30;
+      width: min(260px, calc(100vw - 32px));
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(10px);
+      display: none;
+    }
 
-.enter:hover {
-  color: white;
-  text-shadow: 0 0 10px var(--gold);
-}
+    .menu-panel.open {
+      display: block;
+    }
 
-.nav-bar {
-  position: absolute;
-  left: 50%;
-  bottom: 18px;
-  z-index: 4;
-  transform: translateX(-50%);
-  width: min(900px, 92vw);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 10px;
-  background: rgba(20, 12, 6, 0.78);
-  border: 1px solid rgba(216,180,106,0.35);
-  border-radius: 12px;
-  backdrop-filter: blur(4px);
-}
+    .menu-panel a {
+      display: block;
+      padding: 13px 12px;
+      margin: 5px 0;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      background: rgba(255,255,255,0.08);
+    }
 
-.nav-bar a {
-  color: var(--gold);
-  text-decoration: none;
-  font-size: clamp(0.75rem, 2.5vw, 1rem);
-  text-align: center;
-}
+    .menu-panel a:hover,
+    .menu-panel a:focus {
+      background: rgba(255,255,255,0.18);
+      outline: none;
+    }
 
-.nav-bar a:hover {
-  color: white;
-  text-shadow: 0 0 10px var(--gold);
-}
-</style>
+    .version-tag {
+      position: fixed;
+      left: 14px;
+      bottom: 12px;
+      z-index: 20;
+      max-width: calc(100vw - 28px);
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.45);
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      backdrop-filter: blur(6px);
+    }
+
+    @media (min-width: 769px) {
+      .hero img {
+        object-position: center center;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="loading-screen" id="loadingScreen" aria-hidden="true"></div>
 
-<main class="hero">
-  <div class="vignette"></div>
+  <main class="hero">
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/welcome-mobile.png" />
+      <img
+        id="mainImage"
+        src="assets/welcome.png"
+        alt="Wrong Way Dogz Art welcome scene overlooking Echo Valley"
+      />
+    </picture>
+  </main>
 
-  <button class="audio-btn" id="audioBtn" aria-label="Toggle ambience">🔇</button>
-  <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  <button class="top-button audio-button" id="audioButton" aria-label="Play ambience">
+    ♪
+  </button>
 
-  <nav class="menu" id="menu">
-    <a href="https://wrongwaydogz.gumroad.com/l/gyxyvi" target="_blank">🔥 Glitch Pack</a>
-    <a href="https://wrongwaydogz.gumroad.com/subscribe" target="_blank">⭐ Follow on Gumroad</a>
-    <a href="http://www.redbubble.com/people/wrongwaydogzart" target="_blank">🛍️ Shop Merch</a>
+  <button class="top-button menu-button" id="menuButton" aria-label="Open menu">
+    ☰
+  </button>
+
+  <nav class="menu-panel" id="menuPanel" aria-label="Main menu">
+    <a href="#">Explore</a>
+    <a href="#">Studio</a>
+    <a href="#">Cave</a>
+    <a href="https://www.redbubble.com/people/wrongwaydogzart/shop" target="_blank" rel="noopener">Redbubble</a>
+    <a href="#" target="_blank" rel="noopener">Gumroad</a>
   </nav>
 
-  <a class="enter" href="#">CLICK TO ENTER</a>
+  <div class="version-tag">
+    V1 — Because we have to keep track somehow.
+  </div>
 
-  <nav class="nav-bar">
-    <a href="#">📖<br>Stories</a>
-    <a href="#">🎨<br>Art Gallery</a>
-    <a href="#">🐾<br>Enter</a>
-    <a href="#">📰<br>Wood Post</a>
-    <a href="http://www.redbubble.com/people/wrongwaydogzart" target="_blank">🛍️<br>Shop</a>
-  </nav>
+  <audio id="ambience" src="assets/WWDA_morning_ambience.mp3" loop preload="auto"></audio>
 
-  <audio id="ambience" loop>
-    <source src="assets/WWDA_morning_ambience.mp3" type="audio/mpeg">
-  </audio>
-</main>
+  <script>
+    const loadingScreen = document.getElementById("loadingScreen");
+    const mainImage = document.getElementById("mainImage");
+    const menuButton = document.getElementById("menuButton");
+    const menuPanel = document.getElementById("menuPanel");
+    const audioButton = document.getElementById("audioButton");
+    const ambience = document.getElementById("ambience");
 
-<script>
-const menuBtn = document.getElementById("menuBtn");
-const menu = document.getElementById("menu");
-const audioBtn = document.getElementById("audioBtn");
-const ambience = document.getElementById("ambience");
+    function hideLoadingScreen() {
+      loadingScreen.classList.add("hidden");
+    }
 
-menuBtn.addEventListener("click", () => {
-  menu.classList.toggle("open");
-});
+    if (mainImage.complete) {
+      setTimeout(hideLoadingScreen, 400);
+    } else {
+      mainImage.addEventListener("load", () => {
+        setTimeout(hideLoadingScreen, 400);
+      });
+    }
 
-document.addEventListener("click", (event) => {
-  if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
-    menu.classList.remove("open");
-  }
-});
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuPanel.classList.toggle("open");
+      menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    });
 
-audioBtn.addEventListener("click", async () => {
-  if (ambience.paused) {
-    ambience.volume = 0.18;
-    await ambience.play();
-    audioBtn.textContent = "🔊";
-  } else {
-    ambience.pause();
-    audioBtn.textContent = "🔇";
-  }
-});
-</script>
+    document.addEventListener("click", (event) => {
+      const clickedMenu = menuPanel.contains(event.target);
+      const clickedButton = menuButton.contains(event.target);
 
+      if (!clickedMenu && !clickedButton) {
+        menuPanel.classList.remove("open");
+        menuButton.setAttribute("aria-label", "Open menu");
+      }
+    });
+
+    audioButton.addEventListener("click", async () => {
+      if (ambience.paused) {
+        try {
+          await ambience.play();
+          audioButton.textContent = "❚❚";
+          audioButton.setAttribute("aria-label", "Pause ambience");
+        } catch (error) {
+          console.log("Audio could not start:", error);
+        }
+      } else {
+        ambience.pause();
+        audioButton.textContent = "♪";
+        audioButton.setAttribute("aria-label", "Play ambience");
+      }
+    });
+  </script>
 </body>
 </html>
