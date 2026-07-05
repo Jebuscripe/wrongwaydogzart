@@ -1,241 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Wrong Way Dogz Art</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-:root {
-  --teal: #7ae9c7;
-  --text: #effff9;
-}
+  <title>Wrong Way Dogz Art</title>
+  <link rel="icon" type="image/jpeg" href="assets/favoriteicon.jpg" />
 
-body {
-  margin: 0;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background: black;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-/* WORLD */
-.world {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: #050807;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-.world-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    body {
+      min-height: 100vh;
+    }
 
-/* ATMOSPHERE */
-.vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.6));
-}
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #050807 url("assets/loading.png") center / cover no-repeat;
+      z-index: 10;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
 
-.scanlines {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.02),
-    rgba(255,255,255,0.02) 1px,
-    transparent 2px
-  );
-}
+    .loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
 
-/* TITLE */
-.title-box {
-  position: absolute;
-  top: 20%;
-  left: 10%;
-  color: white;
-}
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #050807;
+    }
 
-.title-box h1 {
-  letter-spacing: 0.2em;
-  line-height: 1.1;
-}
+    .hero picture,
+    .hero img {
+      display: block;
+      width: 100%;
+      height: 100vh;
+    }
 
-.title-box p {
-  opacity: 0.8;
-}
+    .hero img {
+      object-fit: cover;
+      object-position: center center;
+    }
 
-/* MENU BUTTON */
-.menu-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 55px;
-  height: 55px;
-  font-size: 1.6rem;
-  background: rgba(0,0,0,0.5);
-  border: none;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-}
+    .top-button {
+      position: fixed;
+      top: 16px;
+      z-index: 20;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 50%;
+      background: rgba(0,0,0,0.45);
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
 
-.menu-button:hover {
-  box-shadow: 0 0 12px var(--teal);
-  transform: scale(1.05);
-}
+    .audio-button {
+      left: 16px;
+    }
 
-/* MENU PANEL */
-.world-menu {
-  position: absolute;
-  top: 90px;
-  right: 20px;
-  width: 260px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
-  padding: 15px;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: 0.25s;
-}
+    .menu-button {
+      right: 16px;
+    }
 
-.world-menu.open {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .menu-panel {
+      position: fixed;
+      top: 74px;
+      right: 16px;
+      z-index: 30;
+      width: min(260px, calc(100vw - 32px));
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(10px);
+      display: none;
+    }
 
-.world-menu h2 {
-  margin-top: 0;
-  font-size: 1.1rem;
-}
+    .menu-panel.open {
+      display: block;
+    }
 
-.world-menu a {
-  display: block;
-  color: var(--text);
-  text-decoration: none;
-  padding: 10px 0;
-  transition: 0.2s;
-}
+    .menu-panel a {
+      display: block;
+      padding: 13px 12px;
+      margin: 5px 0;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      background: rgba(255,255,255,0.08);
+    }
 
-.world-menu a:hover {
-  color: var(--teal);
-  text-shadow: 0 0 6px var(--teal);
-  transform: translateX(4px);
-}
+    .menu-panel a:hover,
+    .menu-panel a:focus {
+      background: rgba(255,255,255,0.18);
+      outline: none;
+    }
 
-/* ZONES */
-.zone {
-  position: absolute;
-  display: block;
-}
+    .version-tag {
+      position: fixed;
+      left: 14px;
+      bottom: 12px;
+      z-index: 20;
+      max-width: calc(100vw - 28px);
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.45);
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      backdrop-filter: blur(6px);
+    }
 
-.zone span {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.6);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-  opacity: 0;
-  transition: 0.2s;
-  color: white;
-}
-
-.zone:hover span {
-  opacity: 1;
-}
-
-/* subtle glow hotspots */
-.zone::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  box-shadow: 0 0 12px rgba(122,233,199,0.25);
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.zone:hover::after {
-  opacity: 1;
-}
-
-/* POSITION THESE BASED ON YOUR IMAGE */
-.bridge-zone { top: 60%; left: 30%; width: 80px; height: 80px; }
-.tree-zone { top: 25%; left: 55%; width: 90px; height: 90px; }
-.lj-zone { top: 70%; left: 65%; width: 70px; height: 70px; }
-.pixel-zone { top: 50%; left: 45%; width: 80px; height: 80px; }
-.daisy-zone { top: 65%; left: 50%; width: 80px; height: 80px; }
-</style>
+    @media (min-width: 769px) {
+      .hero img {
+        object-position: center center;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="loading-screen" id="loadingScreen" aria-hidden="true"></div>
 
-<div class="world">
-  <img src="assets/world.png" class="world-image" />
+  <main class="hero">
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/welcome-mobile.png" />
+      <img
+        id="mainImage"
+        src="assets/welcome.png"
+        alt="Wrong Way Dogz Art welcome scene overlooking Echo Valley"
+      />
+    </picture>
+  </main>
 
-  <div class="vignette"></div>
-  <div class="scanlines"></div>
+  <button class="top-button audio-button" id="audioButton" aria-label="Play ambience">
+    ♪
+  </button>
 
-  <section class="title-box">
-    <h1>WRONG<br>WAY<br>DOGZ<br>ART</h1>
-    <p>A world is forming...</p>
-  </section>
+  <button class="top-button menu-button" id="menuButton" aria-label="Open menu">
+    ☰
+  </button>
 
-  <button class="menu-button" id="menuButton">☰</button>
-
-  <nav class="world-menu" id="worldMenu">
-    <h2>WORLD MENU</h2>
-
-    <a href="https://wrongwaydogz.gumroad.com/l/gyxyvi" target="_blank">
-      🔥 Glitch Pack
-    </a>
-
-    <a href="https://wrongwaydogz.gumroad.com/subscribe" target="_blank">
-      ⭐ Follow on Gumroad
-    </a>
-
-    <a href="http://www.redbubble.com/people/wrongwaydogzart" target="_blank">
-      🛍️ Shop Merch
-    </a>
-
-    <a href="#">🌳 World Expanding...</a>
+  <nav class="menu-panel" id="menuPanel" aria-label="Main menu">
+    <a href="#">Explore</a>
+    <a href="#">Studio</a>
+    <a href="#">Cave</a>
+    <a href="https://www.redbubble.com/people/wrongwaydogzart/shop" target="_blank" rel="noopener">Redbubble</a>
+    <a href="#" target="_blank" rel="noopener">Gumroad</a>
   </nav>
 
-  <!-- CLICKABLE WORLD -->
-  <a href="https://wrongwaydogz.gumroad.com/l/gyxyvi" target="_blank" class="zone pixel-zone">
-    <span>Glitch Pack</span>
-  </a>
+  <div class="version-tag">
+    V1 — Because we have to keep track somehow.
+  </div>
 
-  <a href="http://www.redbubble.com/people/wrongwaydogzart" target="_blank" class="zone bridge-zone">
-    <span>Shop Merch</span>
-  </a>
+  <audio id="ambience" src="assets/WWDA_morning_ambience.mp3" loop preload="auto"></audio>
 
-  <a href="https://wrongwaydogz.gumroad.com/subscribe" target="_blank" class="zone lj-zone">
-    <span>Follow</span>
-  </a>
+  <script>
+    const loadingScreen = document.getElementById("loadingScreen");
+    const mainImage = document.getElementById("mainImage");
+    const menuButton = document.getElementById("menuButton");
+    const menuPanel = document.getElementById("menuPanel");
+    const audioButton = document.getElementById("audioButton");
+    const ambience = document.getElementById("ambience");
 
-</div>
+    function hideLoadingScreen() {
+      loadingScreen.classList.add("hidden");
+    }
 
-<script>
-const menuButton = document.getElementById("menuButton");
-const worldMenu = document.getElementById("worldMenu");
+    if (mainImage.complete) {
+      setTimeout(hideLoadingScreen, 400);
+    } else {
+      mainImage.addEventListener("load", () => {
+        setTimeout(hideLoadingScreen, 400);
+      });
+    }
 
-menuButton.addEventListener("click", () => {
-  worldMenu.classList.toggle("open");
-});
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuPanel.classList.toggle("open");
+      menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    });
 
-document.addEventListener("click", (e) => {
-  if (!worldMenu.contains(e.target) && !menuButton.contains(e.target)) {
-    worldMenu.classList.remove("open");
-  }
-});
-</script>
+    document.addEventListener("click", (event) => {
+      const clickedMenu = menuPanel.contains(event.target);
+      const clickedButton = menuButton.contains(event.target);
 
+      if (!clickedMenu && !clickedButton) {
+        menuPanel.classList.remove("open");
+        menuButton.setAttribute("aria-label", "Open menu");
+      }
+    });
+
+    audioButton.addEventListener("click", async () => {
+      if (ambience.paused) {
+        try {
+          await ambience.play();
+          audioButton.textContent = "❚❚";
+          audioButton.setAttribute("aria-label", "Pause ambience");
+        } catch (error) {
+          console.log("Audio could not start:", error);
+        }
+      } else {
+        ambience.pause();
+        audioButton.textContent = "♪";
+        audioButton.setAttribute("aria-label", "Play ambience");
+      }
+    });
+  </script>
 </body>
 </html>
