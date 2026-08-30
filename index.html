@@ -27,11 +27,12 @@
       min-height: 100vh;
     }
 
+    /* Loading screen */
     .loading-screen {
       position: fixed;
       inset: 0;
       background: #050807 url("assets/loading.png") center / cover no-repeat;
-      z-index: 10;
+      z-index: 100;
       transition: opacity 1s ease, visibility 1s ease;
     }
 
@@ -40,10 +41,11 @@
       visibility: hidden;
     }
 
+    /* Main full-screen scene */
     .hero {
       position: relative;
       width: 100%;
-      min-height: 100vh;
+      height: 100vh;
       overflow: hidden;
       background: #050807;
     }
@@ -52,7 +54,7 @@
     .hero img {
       display: block;
       width: 100%;
-      height: 100vh;
+      height: 100%;
     }
 
     .hero img {
@@ -60,6 +62,43 @@
       object-position: center center;
     }
 
+    /* Scene 1 begins hidden */
+    .scene-one {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      background: #050807;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.4s ease, visibility 1.4s ease;
+    }
+
+    .scene-one.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scene-one img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* Entrance fades away */
+    .hero {
+      transition: opacity 1.4s ease, visibility 1.4s ease;
+      cursor: pointer;
+    }
+
+    .hero.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Top controls */
     .top-button {
       position: fixed;
       top: 16px;
@@ -73,6 +112,7 @@
       font-size: 22px;
       cursor: pointer;
       backdrop-filter: blur(6px);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
     .audio-button {
@@ -81,6 +121,13 @@
 
     .menu-button {
       right: 16px;
+    }
+
+    /* Menu disappears once we enter the valley */
+    .menu-button.world-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 
     .menu-panel {
@@ -130,57 +177,119 @@
       color: rgba(255,255,255,0.85);
       font-size: 12px;
       backdrop-filter: blur(6px);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
-    @media (min-width: 769px) {
-      .hero img {
-        object-position: center center;
-      }
+    .version-tag.world-hidden {
+      opacity: 0;
+      visibility: hidden;
     }
   </style>
 </head>
 
 <body>
-  <div class="loading-screen" id="loadingScreen" aria-hidden="true"></div>
 
-  <main class="hero">
+  <div
+    class="loading-screen"
+    id="loadingScreen"
+    aria-hidden="true">
+  </div>
+
+  <!-- The overlook -->
+  <main
+    class="hero"
+    id="entrance"
+    aria-label="Enter Echo Valley">
+
     <picture>
-      <source media="(max-width: 768px)" srcset="assets/welcome-mobile.png" />
+      <source
+        media="(max-width: 768px)"
+        srcset="assets/welcome-mobile.png"
+      />
+
       <img
         id="mainImage"
         src="assets/welcome.png"
         alt="Wrong Way Dogz Art welcome scene overlooking Echo Valley"
       />
     </picture>
+
   </main>
 
-  <button class="top-button audio-button" id="audioButton" aria-label="Play ambience">
+  <!--
+    First step into Echo Valley.
+    Somehow the trail was easier to build
+    after we stopped trying to build the entire forest.
+  -->
+  <section
+    class="scene-one"
+    id="sceneOne">
+
+    <img
+      src="assets/scene1.png"
+      alt="Forest trail descending into Echo Valley"
+    />
+
+  </section>
+
+  <button
+    class="top-button audio-button"
+    id="audioButton"
+    aria-label="Play ambience">
     ♪
   </button>
 
-  <button class="top-button menu-button" id="menuButton" aria-label="Open menu">
+  <button
+    class="top-button menu-button"
+    id="menuButton"
+    aria-label="Open menu">
     ☰
   </button>
 
-  <nav class="menu-panel" id="menuPanel" aria-label="Main menu">
+  <nav
+    class="menu-panel"
+    id="menuPanel"
+    aria-label="Main menu">
+
     <a href="#">Explore</a>
     <a href="#">Studio</a>
-    <a href="#">Cave</a>
-    <a href="https://www.redbubble.com/people/wrongwaydogzart/shop" target="_blank" rel="noopener">Redbubble</a>
-    <a href="#" target="_blank" rel="noopener">Gumroad</a>
+    <a href="cave.html">Cave</a>
+
+    <a
+      href="https://www.redbubble.com/people/wrongwaydogzart/shop"
+      target="_blank"
+      rel="noopener">
+      Redbubble
+    </a>
+
+    <a href="#">Gumroad</a>
+
   </nav>
 
-  <div class="version-tag">
+  <div
+    class="version-tag"
+    id="versionTag">
     V1 — Because we have to keep track somehow.
   </div>
 
-  <audio id="ambience" src="assets/WWDA_morning_ambience.mp3" loop preload="auto"></audio>
+  <audio
+    id="ambience"
+    src="assets/WWDA_morning_ambience.mp3"
+    loop
+    preload="auto">
+  </audio>
 
   <script>
     const loadingScreen = document.getElementById("loadingScreen");
     const mainImage = document.getElementById("mainImage");
+
+    const entrance = document.getElementById("entrance");
+    const sceneOne = document.getElementById("sceneOne");
+
     const menuButton = document.getElementById("menuButton");
     const menuPanel = document.getElementById("menuPanel");
+    const versionTag = document.getElementById("versionTag");
+
     const audioButton = document.getElementById("audioButton");
     const ambience = document.getElementById("ambience");
 
@@ -196,9 +305,32 @@
       });
     }
 
+    /*
+      Welcome to Echo Valley.
+
+      No quest marker.
+      No glowing arrow.
+      The enormous trail in front of you
+      seemed like sufficient documentation.
+    */
+    function enterEchoValley() {
+      sceneOne.classList.add("active");
+      entrance.classList.add("hidden");
+
+      menuPanel.classList.remove("open");
+      menuButton.classList.add("world-hidden");
+      versionTag.classList.add("world-hidden");
+    }
+
+    entrance.addEventListener("click", enterEchoValley);
+
     menuButton.addEventListener("click", () => {
       const isOpen = menuPanel.classList.toggle("open");
-      menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu"
+      );
     });
 
     document.addEventListener("click", (event) => {
@@ -215,17 +347,26 @@
       if (ambience.paused) {
         try {
           await ambience.play();
+
           audioButton.textContent = "❚❚";
-          audioButton.setAttribute("aria-label", "Pause ambience");
+          audioButton.setAttribute(
+            "aria-label",
+            "Pause ambience"
+          );
         } catch (error) {
           console.log("Audio could not start:", error);
         }
       } else {
         ambience.pause();
+
         audioButton.textContent = "♪";
-        audioButton.setAttribute("aria-label", "Play ambience");
+        audioButton.setAttribute(
+          "aria-label",
+          "Play ambience"
+        );
       }
     });
   </script>
+
 </body>
 </html>
