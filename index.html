@@ -1,373 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Wrong Way Dogz Art</title>
-  <link rel="icon" type="image/jpeg" href="assets/favoriteicon.jpg" />
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100%;
-      background: #050807;
-      color: white;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    body {
-      min-height: 100vh;
-    }
-
-    /* Loading screen */
-    .loading-screen {
-      position: fixed;
-      inset: 0;
-      background: #050807 url("assets/loading.png") center / cover no-repeat;
-      z-index: 100;
-      transition: opacity 1s ease, visibility 1s ease;
-    }
-
-    .loading-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    /* Main full-screen scene */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      background: #050807;
-    }
-
-    .hero picture,
-    .hero img {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .hero img {
-      object-fit: cover;
-      object-position: center center;
-    }
-
-    /* Scene 1 begins hidden */
-    .scene-one {
-      position: fixed;
-      inset: 0;
-      z-index: 5;
-      background: #050807;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 1.4s ease, visibility 1.4s ease;
-    }
-
-    .scene-one.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .scene-one img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  object-position: center center;
-  background: #050807;
-    }
-
-    /* Entrance fades away */
-    .hero {
-      transition: opacity 1.4s ease, visibility 1.4s ease;
-      cursor: pointer;
-    }
-
-    .hero.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    /* Top controls */
-    .top-button {
-      position: fixed;
-      top: 16px;
-      z-index: 20;
-      width: 46px;
-      height: 46px;
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 50%;
-      background: rgba(0,0,0,0.45);
-      color: white;
-      font-size: 22px;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-
-    .audio-button {
-      left: 16px;
-    }
-
-    .menu-button {
-      right: 16px;
-    }
-
-    /* Menu disappears once we enter the valley */
-    .menu-button.world-hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .menu-panel {
-      position: fixed;
-      top: 74px;
-      right: 16px;
-      z-index: 30;
-      width: min(260px, calc(100vw - 32px));
-      padding: 14px;
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 18px;
-      background: rgba(0,0,0,0.72);
-      backdrop-filter: blur(10px);
-      display: none;
-    }
-
-    .menu-panel.open {
-      display: block;
-    }
-
-    .menu-panel a {
-      display: block;
-      padding: 13px 12px;
-      margin: 5px 0;
-      border-radius: 12px;
-      color: white;
-      text-decoration: none;
-      font-size: 17px;
-      background: rgba(255,255,255,0.08);
-    }
-
-    .menu-panel a:hover,
-    .menu-panel a:focus {
-      background: rgba(255,255,255,0.18);
-      outline: none;
-    }
-
-    .version-tag {
-      position: fixed;
-      left: 14px;
-      bottom: 12px;
-      z-index: 20;
-      max-width: calc(100vw - 28px);
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.45);
-      color: rgba(255,255,255,0.85);
-      font-size: 12px;
-      backdrop-filter: blur(6px);
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-
-    .version-tag.world-hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrong Way Dogz Art | Art, stories, music & curious things</title>
+<meta name="description" content="Wrong Way Dogz Art is an independent creative workshop making original art, music, stories, characters and playful digital experiences. Follow the making of Echo Valley.">
+<meta property="og:title" content="Wrong Way Dogz Art — Base Camp">
+<meta property="og:description" content="Art, stories, music and curious things. A creative workshop building a world of its own.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#17241e">
+<link rel="icon" href="assets/favoriteicon.jpg" type="image/jpeg">
+<style>
+:root{color-scheme:dark;--bg:#131d18;--panel:#203029;--ink:#f4eddb;--muted:#c3c8b8;--line:#46584a;--gold:#eac481;--max:1150px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,sans-serif}a{color:var(--gold)}a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}img{display:block;width:100%;height:auto}h1,h2,h3,p{margin:0}h1,h2,h3{line-height:1.12}h1,h2{font-family:Georgia,serif;font-weight:normal}h1{font-size:clamp(3rem,7vw,6.4rem);letter-spacing:-.045em}h2{font-size:clamp(2rem,4vw,3.3rem)}h3{font-size:1.25rem}p{margin-top:.8rem;color:var(--muted)}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:var(--bg);padding:1rem;z-index:2}.header{border-bottom:1px solid var(--line)}.nav{min-height:76px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 0}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;line-height:1.2}.brand img{width:42px;height:42px;object-fit:cover;border-radius:50%}nav{display:flex;gap:clamp(12px,3vw,28px);flex-wrap:wrap}nav a{text-decoration:none;color:var(--ink);font-size:.91rem}nav a:hover{text-decoration:underline}.hero{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;padding:60px 0 48px}.eyebrow{color:var(--gold);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:750;margin-bottom:15px}.hero p{font-size:1.13rem;max-width:36rem}.button{display:inline-block;margin-top:24px;background:var(--gold);color:#202719;padding:12px 20px;border-radius:5px;text-decoration:none;font-weight:750}.button:hover{background:#ffe0a6}.art-frame{margin:0;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--panel)}.art-frame img{aspect-ratio:4/3;object-fit:contain;background:#101711}.art-frame figcaption{padding:12px 16px;font-size:.8rem;color:var(--muted)}.strip{display:flex;gap:14px;align-items:center;border-block:1px solid var(--line);padding:18px 0;color:var(--muted)}.strip strong{color:var(--gold);white-space:nowrap}section{padding:55px 0;scroll-margin-top:16px}.intro{max-width:720px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:25px;min-width:0}.tag{display:block;font-size:.72rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}.feature{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px}.feature img{aspect-ratio:16/10;object-fit:contain;background:#101711}.notes{background:#1b2921;border-block:1px solid var(--line)}.note{border-left:2px solid var(--gold);padding-left:18px;margin-top:24px}.note time{color:var(--gold);font-size:.8rem;letter-spacing:.05em}.footer{padding:28px 0 45px;border-top:1px solid var(--line);font-size:.9rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.footer p{margin:0}.small{font-size:.9rem} @media(max-width:720px){.hero,.feature{grid-template-columns:1fr;gap:22px}.hero{padding:36px 0}.cards{grid-template-columns:1fr}.strip{align-items:flex-start;flex-direction:column;gap:4px}section{padding:40px 0}.nav{gap:12px}.wrap{width:calc(100% - 32px)}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
-
 <body>
-
-  <div
-    class="loading-screen"
-    id="loadingScreen"
-    aria-hidden="true">
-  </div>
-
-  <!-- The overlook -->
-  <main
-    class="hero"
-    id="entrance"
-    aria-label="Enter Echo Valley">
-
-    <picture>
-      <source
-        media="(max-width: 768px)"
-        srcset="assets/welcome-mobile.png"
-      />
-
-      <img
-        id="mainImage"
-        src="assets/welcome.png"
-        alt="Wrong Way Dogz Art welcome scene overlooking Echo Valley"
-      />
-    </picture>
-
-  </main>
-
-  <!--
-    First step into Echo Valley.
-    Somehow the trail was easier to build
-    after we stopped trying to build the entire forest.
-  -->
-  <section
-    class="scene-one"
-    id="sceneOne">
-
-    <img
-      src="assets/scene1.png"
-      alt="Forest trail descending into Echo Valley"
-    />
-
-  </section>
-
-  <button
-    class="top-button audio-button"
-    id="audioButton"
-    aria-label="Play ambience">
-    ♪
-  </button>
-
-  <button
-    class="top-button menu-button"
-    id="menuButton"
-    aria-label="Open menu">
-    ☰
-  </button>
-
-  <nav
-    class="menu-panel"
-    id="menuPanel"
-    aria-label="Main menu">
-
-    <a href="#">Explore</a>
-    <a href="#">Studio</a>
-    <a href="cave.html">Cave</a>
-
-    <a
-      href="https://www.redbubble.com/people/wrongwaydogzart/shop"
-      target="_blank"
-      rel="noopener">
-      Redbubble
-    </a>
-
-    <a href="#">Gumroad</a>
-
-  </nav>
-
-  <div
-    class="version-tag"
-    id="versionTag">
-    V1 — Because we have to keep track somehow.
-  </div>
-
-  <audio
-    id="ambience"
-    src="assets/WWDA_morning_ambience.mp3"
-    loop
-    preload="auto">
-  </audio>
-
-  <script>
-    const loadingScreen = document.getElementById("loadingScreen");
-    const mainImage = document.getElementById("mainImage");
-
-    const entrance = document.getElementById("entrance");
-    const sceneOne = document.getElementById("sceneOne");
-
-    const menuButton = document.getElementById("menuButton");
-    const menuPanel = document.getElementById("menuPanel");
-    const versionTag = document.getElementById("versionTag");
-
-    const audioButton = document.getElementById("audioButton");
-    const ambience = document.getElementById("ambience");
-
-    function hideLoadingScreen() {
-      loadingScreen.classList.add("hidden");
-    }
-
-    if (mainImage.complete) {
-      setTimeout(hideLoadingScreen, 400);
-    } else {
-      mainImage.addEventListener("load", () => {
-        setTimeout(hideLoadingScreen, 400);
-      });
-    }
-
-    /*
-      Welcome to Echo Valley.
-
-      No quest marker.
-      No glowing arrow.
-      The enormous trail in front of you
-      seemed like sufficient documentation.
-    */
-    function enterEchoValley() {
-      sceneOne.classList.add("active");
-      entrance.classList.add("hidden");
-
-      menuPanel.classList.remove("open");
-      menuButton.classList.add("world-hidden");
-      versionTag.classList.add("world-hidden");
-    }
-
-    entrance.addEventListener("click", enterEchoValley);
-
-    menuButton.addEventListener("click", () => {
-      const isOpen = menuPanel.classList.toggle("open");
-
-      menuButton.setAttribute(
-        "aria-label",
-        isOpen ? "Close menu" : "Open menu"
-      );
-    });
-
-    document.addEventListener("click", (event) => {
-      const clickedMenu = menuPanel.contains(event.target);
-      const clickedButton = menuButton.contains(event.target);
-
-      if (!clickedMenu && !clickedButton) {
-        menuPanel.classList.remove("open");
-        menuButton.setAttribute("aria-label", "Open menu");
-      }
-    });
-
-    audioButton.addEventListener("click", async () => {
-      if (ambience.paused) {
-        try {
-          await ambience.play();
-
-          audioButton.textContent = "❚❚";
-          audioButton.setAttribute(
-            "aria-label",
-            "Pause ambience"
-          );
-        } catch (error) {
-          console.log("Audio could not start:", error);
-        }
-      } else {
-        ambience.pause();
-
-        audioButton.textContent = "♪";
-        audioButton.setAttribute(
-          "aria-label",
-          "Play ambience"
-        );
-      }
-    });
-  </script>
-
+<a class="skip" href="#main">Skip to content</a>
+<header class="header"><div class="wrap nav">
+<a class="brand" href="./"><img src="assets/favoriteicon.jpg" alt="" width="42" height="42"><span>Wrong Way<br>Dogz Art</span></a>
+<nav aria-label="Main navigation"><a href="#work">Our work</a><a href="#echo-valley">Echo Valley</a><a href="#notes">Field notes</a><a href="#about">About</a></nav>
+</div></header>
+<main id="main">
+<div class="wrap hero">
+<div><div class="eyebrow">Base Camp / Independent creative workshop</div><h1>Take the<br>wrong way.</h1><p>Welcome to Wrong Way Dogz Art. We make art, music, stories, unusual characters and curious little things. Somewhere along the way, we started building a world of our own.</p><a class="button" href="#work">Look around</a></div>
+<figure class="art-frame"><picture><source media="(max-width: 600px)" srcset="assets/welcome-mobile.png"><img src="assets/welcome.png" alt="An illustrated overlook into Echo Valley"></picture><figcaption>From the Echo Valley world-building project.</figcaption></figure>
+</div>
+<div class="wrap strip"><strong>Workshop open.</strong><span>Our larger interactive world is under construction. You are welcome here in the meantime.</span></div>
+<section id="work" class="wrap"><div class="eyebrow">Made, imagined & in the works</div><h2>Inside the workshop</h2><p class="intro">A collection of creative experiments. Some are finished, some are finding their feet, and some are taking the scenic route.</p><div class="cards">
+<article class="card"><span class="tag">Characters & illustration</span><h3>Familiar faces, unfamiliar places.</h3><p>Meet our growing cast, from the wandering storyteller Patch to Back Alley Gary, a pigeon with a rather unusual history. Expect artwork, odd adventures and a sense of humor.</p></article>
+<article class="card"><span class="tag">Music & sound</span><h3>Echo Radio</h3><p>Original music, imaginary broadcasts and curious recordings, including Unusual Findings from the Department of Existence.</p></article>
+<article class="card"><span class="tag">Stories & worlds</span><h3>The places between the pages.</h3><p>Stories, short videos and the beginnings of a bigger universe. A cabin, a few wandering characters and an unreasonable number of questions.</p></article>
+<article class="card"><span class="tag">Digital experiments</span><h3>Useful things. Useless things.</h3><p>Sticker art, digital wallpapers, a nature-inspired calendar and playful little experiences. We like making things simply to see what happens.</p></article>
+</div></section>
+<section id="echo-valley" class="wrap feature"><figure class="art-frame"><img src="assets/scene1.png" alt="A forest trail leading into Echo Valley" loading="lazy"><figcaption>An early trail through the valley.</figcaption></figure><div><div class="eyebrow">World in development</div><h2>Beyond Base Camp: Echo Valley</h2><p>Echo Valley is the interactive world we're building around our characters, stories, games and discoveries. Our goal is a place to wander, explore and find something unexpected.</p><p>We're taking it one trail at a time. This site will stay open while the world grows.</p></div></section>
+<div class="notes"><section id="notes" class="wrap"><div class="eyebrow">Notes from the workshop</div><h2>Field notes</h2><article class="note"><span class="tag">Workshop update</span><h3>A place to begin.</h3><p>We're putting together a public home for our work while developing the larger Echo Valley experience. The focus for now is making things, finishing things and sharing them along the way.</p></article></section></div>
+<section id="about" class="wrap"><div class="eyebrow">Who we are</div><h2>Wrong Way Dogz Art</h2><p class="intro">An independent creative workshop for curious people of all ages. Our approach is simple: notice, wonder, experiment, make, learn, reuse and wander. We believe creativity can lead somewhere interesting even when you don't know exactly where you're going.</p><p class="intro">Part of BGCIB — Become, Grow, Come Into Being.</p></section>
+</main>
+<footer class="wrap footer"><p>&copy; 2026 Wrong Way Dogz Art · BGCIB</p><a href="#main">Back to top ↑</a></footer>
 </body>
 </html>
