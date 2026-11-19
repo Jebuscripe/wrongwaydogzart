@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Wrong Way Dogz Art</title>
+  <link rel="icon" type="image/jpeg" href="assets/favoriteicon.jpg" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: #050807;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    /* Loading screen */
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #050807 url("assets/loading.png") center / cover no-repeat;
+      z-index: 100;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* Main full-screen scene */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #050807;
+    }
+
+    .hero picture,
+    .hero img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero img {
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* Scene 1 begins hidden */
+    .scene-one {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      background: #050807;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.4s ease, visibility 1.4s ease;
+    }
+
+    .scene-one.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scene-one img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center center;
+  background: #050807;
+    }
+
+    /* Entrance fades away */
+    .hero {
+      transition: opacity 1.4s ease, visibility 1.4s ease;
+      cursor: pointer;
+    }
+
+    .hero.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Top controls */
+    .top-button {
+      position: fixed;
+      top: 16px;
+      z-index: 20;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 50%;
+      background: rgba(0,0,0,0.45);
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .audio-button {
+      left: 16px;
+    }
+
+    .menu-button {
+      right: 16px;
+    }
+
+    /* Menu disappears once we enter the valley */
+    .menu-button.world-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .menu-panel {
+      position: fixed;
+      top: 74px;
+      right: 16px;
+      z-index: 30;
+      width: min(260px, calc(100vw - 32px));
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(10px);
+      display: none;
+    }
+
+    .menu-panel.open {
+      display: block;
+    }
+
+    .menu-panel a {
+      display: block;
+      padding: 13px 12px;
+      margin: 5px 0;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .menu-panel a:hover,
+    .menu-panel a:focus {
+      background: rgba(255,255,255,0.18);
+      outline: none;
+    }
+
+    .version-tag {
+      position: fixed;
+      left: 14px;
+      bottom: 12px;
+      z-index: 20;
+      max-width: calc(100vw - 28px);
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.45);
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      backdrop-filter: blur(6px);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .version-tag.world-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div
+    class="loading-screen"
+    id="loadingScreen"
+    aria-hidden="true">
+  </div>
+
+  <!-- The overlook -->
+  <main
+    class="hero"
+    id="entrance"
+    aria-label="Enter Echo Valley">
+
+    <picture>
+      <source
+        media="(max-width: 768px)"
+        srcset="assets/welcome-mobile.png"
+      />
+
+      <img
+        id="mainImage"
+        src="assets/welcome.png"
+        alt="Wrong Way Dogz Art welcome scene overlooking Echo Valley"
+      />
+    </picture>
+
+  </main>
+
+  <!--
+    First step into Echo Valley.
+    Somehow the trail was easier to build
+    after we stopped trying to build the entire forest.
+  -->
+  <section
+    class="scene-one"
+    id="sceneOne">
+
+    <img
+      src="assets/scene1.png"
+      alt="Forest trail descending into Echo Valley"
+    />
+
+  </section>
+
+  <button
+    class="top-button audio-button"
+    id="audioButton"
+    aria-label="Play ambience">
+    ♪
+  </button>
+
+  <button
+    class="top-button menu-button"
+    id="menuButton"
+    aria-label="Open menu">
+    ☰
+  </button>
+
+  <nav
+    class="menu-panel"
+    id="menuPanel"
+    aria-label="Main menu">
+
+    <a href="#">Explore</a>
+    <a href="#">Studio</a>
+    <a href="cave.html">Cave</a>
+
+    <a
+      href="https://www.redbubble.com/people/wrongwaydogzart/shop"
+      target="_blank"
+      rel="noopener">
+      Redbubble
+    </a>
+
+    <a href="#">Gumroad</a>
+
+  </nav>
+
+  <div
+    class="version-tag"
+    id="versionTag">
+    V1 — Because we have to keep track somehow.
+  </div>
+
+  <audio
+    id="ambience"
+    src="assets/WWDA_morning_ambience.mp3"
+    loop
+    preload="auto">
+  </audio>
+
+  <script>
+    const loadingScreen = document.getElementById("loadingScreen");
+    const mainImage = document.getElementById("mainImage");
+
+    const entrance = document.getElementById("entrance");
+    const sceneOne = document.getElementById("sceneOne");
+
+    const menuButton = document.getElementById("menuButton");
+    const menuPanel = document.getElementById("menuPanel");
+    const versionTag = document.getElementById("versionTag");
+
+    const audioButton = document.getElementById("audioButton");
+    const ambience = document.getElementById("ambience");
+
+    function hideLoadingScreen() {
+      loadingScreen.classList.add("hidden");
+    }
+
+    if (mainImage.complete) {
+      setTimeout(hideLoadingScreen, 400);
+    } else {
+      mainImage.addEventListener("load", () => {
+        setTimeout(hideLoadingScreen, 400);
+      });
+    }
+
+    /*
+      Welcome to Echo Valley.
+
+      No quest marker.
+      No glowing arrow.
+      The enormous trail in front of you
+      seemed like sufficient documentation.
+    */
+    function enterEchoValley() {
+      sceneOne.classList.add("active");
+      entrance.classList.add("hidden");
+
+      menuPanel.classList.remove("open");
+      menuButton.classList.add("world-hidden");
+      versionTag.classList.add("world-hidden");
+    }
+
+    entrance.addEventListener("click", enterEchoValley);
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuPanel.classList.toggle("open");
+
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu"
+      );
+    });
+
+    document.addEventListener("click", (event) => {
+      const clickedMenu = menuPanel.contains(event.target);
+      const clickedButton = menuButton.contains(event.target);
+
+      if (!clickedMenu && !clickedButton) {
+        menuPanel.classList.remove("open");
+        menuButton.setAttribute("aria-label", "Open menu");
+      }
+    });
+
+    audioButton.addEventListener("click", async () => {
+      if (ambience.paused) {
+        try {
+          await ambience.play();
+
+          audioButton.textContent = "❚❚";
+          audioButton.setAttribute(
+            "aria-label",
+            "Pause ambience"
+          );
+        } catch (error) {
+          console.log("Audio could not start:", error);
+        }
+      } else {
+        ambience.pause();
+
+        audioButton.textContent = "♪";
+        audioButton.setAttribute(
+          "aria-label",
+          "Play ambience"
+        );
+      }
+    });
+  </script>
+
+</body>
+</html>
