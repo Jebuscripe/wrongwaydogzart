@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#19291f">
+<meta name="description" content="Take a little step inside two nature scenes from Wrong Way Dogz Art. An experimental moving-picture gallery.">
+<title>Step Into a Scene · Wrong Way Dogz Art</title>
+<link rel="icon" href="../assets/favoriteicon.jpg" type="image/jpeg">
+<style>
+:root{--forest:#14241b;--panel:#24352a;--line:#617359;--gold:#e7c78f;--cream:#f1e8d4}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 50% -20%,#354c38 0,#14241b 62%);color:var(--cream);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+a{color:var(--gold)}button{font:inherit}a:focus-visible,button:focus-visible,.stage:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.wrap{width:min(1060px,calc(100% - 36px));margin:auto}
+header{border-bottom:1px solid #6880605e}.nav{padding:16px 0;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:.86rem}.nav a{text-decoration:none}.nav .brand{font-weight:700;color:var(--cream)}
+main{padding:50px 0 80px}.eyebrow{color:var(--gold);font-size:.73rem;letter-spacing:.15em;font-weight:750;text-transform:uppercase}.intro{text-align:center;max-width:710px;margin:0 auto 35px}
+h1,h2{font-family:Georgia,serif;font-weight:normal}h1{font-size:clamp(2.6rem,7vw,4.8rem);line-height:1.1;margin:12px 0 19px;letter-spacing:-.03em}h2{font-size:1.55rem;margin:0 0 6px}.intro p{color:#d8d5c4}.intro .note{font-size:.87rem;color:#e4d1a6}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{background:#24352ae8;border:1px solid #63735674;border-radius:9px;overflow:hidden;min-width:0}
+.card .image{display:block;width:100%;padding:0;border:0;cursor:pointer;background:#101b13;position:relative;overflow:hidden}
+.card img{display:block;width:100%;height:290px;object-fit:cover;transition:transform .45s ease;filter:saturate(.88)}
+.card .image:hover img{transform:scale(1.04)}
+.card .image:after{content:"Step inside ↗";position:absolute;right:14px;bottom:14px;background:#14251cd9;border:1px solid #dbc6948a;padding:9px 13px;color:#f3e6c7;border-radius:4px;font-size:.79rem;font-weight:700}
+.detail{padding:20px 23px 24px}.detail p{margin:0;color:#cfcfbe;font-size:.9rem}.detail .count{font-size:.7rem;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+footer{border-top:1px solid #63735674;padding:24px 0 36px;font-size:.82rem;color:#cfcbb9;display:flex;gap:14px;justify-content:space-between;flex-wrap:wrap}
+dialog{padding:0;border:1px solid #89906e;background:#0f2017;color:var(--cream);width:min(1200px,calc(100vw - 18px));max-width:none;max-height:calc(100dvh - 18px);height:min(850px,calc(100dvh - 18px));box-shadow:0 25px 90px #000c;overflow:hidden}
+dialog::backdrop{background:#061009e8;backdrop-filter:blur(8px)}
+.viewer{height:100%;display:flex;flex-direction:column}
+.viewer-head{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:11px 16px;background:#15281e;border-bottom:1px solid #ffffff2b;font-size:.82rem;z-index:4}
+.viewer-head strong{font-family:Georgia,serif;font-size:1.1rem;font-weight:normal}
+.close{background:#dcc391;color:#18271a;border:0;padding:9px 16px;border-radius:4px;cursor:pointer;font-weight:700}
+.stage{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:none;cursor:grab;background:#0c180f;isolation:isolate}
+.stage:active{cursor:grabbing}
+.scene-layer{position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;user-select:none;pointer-events:none;will-change:transform}
+.far{filter:blur(7px) saturate(.9) brightness(.55);transform:translate3d(var(--far-x,0px),var(--far-y,0px),0) scale(1.05)}
+.near{transform:translate3d(var(--near-x,0px),var(--near-y,0px),0) scale(var(--zoom,1.2));filter:saturate(.98) contrast(1.035)}
+.front{opacity:.28;filter:blur(3px) brightness(.9);-webkit-mask-image:radial-gradient(ellipse at 50% 50%,transparent 36%,#000 88%);mask-image:radial-gradient(ellipse at 50% 50%,transparent 36%,#000 88%);transform:translate3d(var(--front-x,0px),var(--front-y,0px),0) scale(calc(var(--zoom,1.2) + .08))}
+.stage:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse,transparent 48%,#05180f67 100%);pointer-events:none}
+.viewer-bottom{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:11px 16px;border-top:1px solid #ffffff2b;background:#15281e;font-size:.77rem;color:#cfcaaf}
+.viewer-bottom p{margin:0}
+.actions{display:flex;gap:8px;align-items:center}
+.action{border:1px solid #8d987a;background:transparent;color:#f3e8cd;border-radius:4px;padding:7px 12px;cursor:pointer}
+.action:hover{background:#35513c}
+@media(max-width:680px){main{padding-top:31px}.grid{grid-template-columns:1fr}.card img{height:245px}.viewer-head{gap:8px}.viewer-bottom p{max-width:200px}.intro p{font-size:.94rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card img{transition:none}.scene-layer{will-change:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a href="../index.html" class="brand">← Wrong Way Dogz Art</a><a href="https://bgcib.netlify.app/creative/index.html">The Little Gallery at BGCIB ↗</a></div></header>
+<main class="wrap">
+<div class="intro"><div class="eyebrow">The Workshop / Experimental Gallery</div><h1>Step Into a Scene</h1>
+<p>Sometimes a picture makes you want to lean a little closer. Pick a view, step toward it, and look around for a moment.</p>
+<p class="note">A small 2.5D perspective experiment using existing WWDA artwork—not a full 3D place (yet). Works with mouse, touch, or arrow keys.</p>
+</div>
+<section class="grid" aria-label="Nature views">
+<article class="card"><button class="image" type="button" data-scene="0" aria-label="Step inside the forest trail"><img src="../assets/scene1.png" alt="Artwork of a forest trail in Echo Valley" loading="lazy"></button><div class="detail"><p class="count">View 01 / Wander</p><h2>The Forest Trail</h2><p>A moment among the trees. Go on—take a closer look.</p></div></article>
+<article class="card"><button class="image" type="button" data-scene="1" aria-label="Step inside the Echo Valley overlook"><img src="../assets/welcome.png" alt="Illustrated overlook into Echo Valley" loading="lazy"></button><div class="detail"><p class="count">View 02 / Wonder</p><h2>The Overlook</h2><p>A little wider view, and the chance to get lost in it.</p></div></article>
+</section>
+</main>
+<footer class="wrap"><span>An experiment from Wrong Way Dogz Art · BGCIB</span><a href="../index.html">Return to Base Camp</a></footer>
+<dialog id="viewer" aria-label="Step inside selected artwork">
+<div class="viewer">
+<div class="viewer-head"><strong id="scene-title">A little look around</strong><button type="button" class="close" id="close">Leave scene ×</button></div>
+<div class="stage" id="stage" tabindex="0" aria-label="Move your mouse or finger to look around the illustration. Arrow keys also work.">
+<img class="scene-layer far" id="far" alt="">
+<img class="scene-layer near" id="near" alt="">
+<img class="scene-layer front" id="front" alt="">
+</div>
+<div class="viewer-bottom"><p>Drag or move to look around. Arrow keys work too.</p><div class="actions"><button class="action" type="button" id="reset">Center view</button><button class="action" type="button" id="switch">Other scene ↔</button></div></div>
+</div></dialog>
+<script>
+(()=>{const scenes=[
+{title:"The Forest Trail",image:"../assets/scene1.png"},
+{title:"The Overlook",image:"../assets/welcome.png"}];
+const modal=document.getElementById("viewer"),stage=document.getElementById("stage");
+const layers=["far","near","front"].map(id=>document.getElementById(id));
+let current=0,x=0,y=0,drag=false;
+const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function draw(){const mx=reduce?0:x,my=reduce?0:y;stage.style.setProperty("--far-x",(-mx*7)+"px");stage.style.setProperty("--far-y",(-my*5)+"px");stage.style.setProperty("--near-x",(-mx*18)+"px");stage.style.setProperty("--near-y",(-my*14)+"px");stage.style.setProperty("--front-x",(-mx*27)+"px");stage.style.setProperty("--front-y",(-my*21)+"px");stage.style.setProperty("--zoom",reduce?"1.12":"1.2")}
+function center(){x=0;y=0;draw()}
+function setScene(i){current=(i+scenes.length)%scenes.length;document.getElementById("scene-title").textContent=scenes[current].title;for(const img of layers){img.src=scenes[current].image;}center();}
+function open(i){setScene(i);modal.showModal();stage.focus({preventScroll:true})}
+document.querySelectorAll("[data-scene]").forEach(btn=>btn.addEventListener("click",()=>open(Number(btn.dataset.scene))));
+document.getElementById("close").addEventListener("click",()=>modal.close());
+document.getElementById("reset").addEventListener("click",()=>{center();stage.focus()});
+document.getElementById("switch").addEventListener("click",()=>{setScene(current+1);stage.focus()});
+function look(e){const r=stage.getBoundingClientRect();x=Math.max(-1,Math.min(1,((e.clientX-r.left)/r.width-.5)*2));y=Math.max(-1,Math.min(1,((e.clientY-r.top)/r.height-.5)*2));draw()}
+stage.addEventListener("pointerdown",e=>{drag=true;stage.setPointerCapture(e.pointerId);look(e)});
+stage.addEventListener("pointermove",e=>{if(e.pointerType==="mouse"||drag)look(e)});
+stage.addEventListener("pointerup",()=>drag=false);
+stage.addEventListener("pointercancel",()=>drag=false);
+stage.addEventListener("keydown",e=>{let dx=0,dy=0;if(e.key==="ArrowLeft")dx=-.13;if(e.key==="ArrowRight")dx=.13;if(e.key==="ArrowUp")dy=-.13;if(e.key==="ArrowDown")dy=.13;if(dx||dy){e.preventDefault();x=Math.max(-1,Math.min(1,x+dx));y=Math.max(-1,Math.min(1,y+dy));draw()}});
+modal.addEventListener("close",()=>{drag=false;center()});
+})();
+</script>
+</body></html>
