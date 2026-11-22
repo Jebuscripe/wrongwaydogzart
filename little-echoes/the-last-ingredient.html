@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#20302a">
+<meta name="description" content="Read The Last Ingredient, the first Little Echoes story from Echo Valley. Free to read, from Wrong Way Dogz Art.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Last Ingredient · Little Echoes">
+<meta property="og:description" content="One very important ingredient. Two friends. A rather unreasonable bird. A free story from Echo Valley.">
+<title>The Last Ingredient · Little Echoes · Wrong Way Dogz Art</title>
+<link rel="icon" href="../assets/favoriteicon.jpg" type="image/jpeg">
+<style>
+:root{--forest:#172920;--fern:#52654b;--gold:#ceae68;--paper:#eee0bd;--ink:#332b23;--muted:#765d43}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top,#344a37 0%,#1b2d24 48%,#0f211a 100%);color:#f6efdf;font-family:Georgia,"Times New Roman",serif}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid #e3c37d;outline-offset:4px}
+.top{max-width:1050px;margin:auto;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font:600 .82rem/1.5 system-ui,sans-serif;letter-spacing:.045em}
+.top a{text-decoration:none}.top a:hover{text-decoration:underline}
+.top .right{color:#e5cf99;font-weight:500}
+.shell{max-width:900px;padding:16px 24px 70px;margin:auto}
+.book-cover{position:relative;isolation:isolate;min-height:min(650px,86vh);padding:clamp(34px,6vw,76px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;color:#e7d5aa;background:
+repeating-linear-gradient(95deg,transparent 0px,rgba(255,255,255,.018) 2px,transparent 4px,rgba(0,0,0,.016) 6px),
+linear-gradient(125deg,#254034 1%,#294638 27%,#182c23 90%);
+border:10px solid #1b3126;border-left:20px solid #12251d;box-shadow:0 10px 14px #07130e6e,0 32px 55px #06140b9e,inset 0 0 0 2px #776b43}
+.book-cover:before{content:"";position:absolute;inset:16px;border:1px solid #b89b58a8;pointer-events:none}
+.book-cover:after{content:"";position:absolute;inset:25px;border:1px solid #b89b584a;pointer-events:none}
+.book-cover .smallcap{font:600 clamp(.65rem,1.8vw,.84rem)/1.8 system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.book-cover h1{font-size:clamp(3.15rem,8vw,6rem);font-weight:normal;line-height:1.04;letter-spacing:-.035em;margin:45px 0 25px;text-wrap:balance;text-shadow:0 2px 2px #07160e}
+.book-cover .series{font-size:clamp(1.25rem,3.1vw,2rem);letter-spacing:.095em;font-variant:small-caps}
+.book-cover .rule{width:min(160px,50%);height:1px;background:#bda66b;margin:28px auto}
+.book-cover .ornament{font-size:2rem;letter-spacing:.3em;color:#d6c393}
+.book-cover .edition{margin-top:40px;font-style:italic;color:#ded0ac}
+.read-link{display:inline-block;margin-top:42px;background:#dec38b;color:#26382d;text-decoration:none;padding:12px 23px;font:700 .83rem system-ui,sans-serif;letter-spacing:.05em;border-radius:2px}
+.read-link:hover{background:#f1d9a4}
+.pages{color:var(--ink);background:
+radial-gradient(circle at 10% 5%,#fff9df95,transparent 32%),
+radial-gradient(circle at 90% 95%,#aa89571c,transparent 35%),
+repeating-linear-gradient(0deg,transparent 0 4px,#765b3905 5px 6px),
+var(--paper);
+position:relative;box-shadow:0 9px 16px #05130b77,0 25px 50px #06140a88,inset 16px 0 25px #70532924; border-inline:1px solid #a5916d;padding:clamp(24px,7vw,78px) clamp(24px,8vw,90px) clamp(42px,8vw,90px)}
+.pages:before{content:"";position:absolute;inset:12px;border:1px solid #896f4a40;pointer-events:none}
+.titlepage{text-align:center;padding:clamp(18px,6vw,58px) 0 clamp(34px,7vw,74px);border-bottom:1px solid #a58a6255;margin-bottom:clamp(36px,6vw,70px)}
+.titlepage .label{font:700 .74rem/1.6 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.2em;color:#7f6d51}
+.titlepage h2{font-size:clamp(2.5rem,6vw,4.2rem);line-height:1.1;font-weight:normal;margin:20px 0 17px}
+.titlepage .by{font-size:1rem;color:var(--muted);font-style:italic}
+.titlepage .flourish{color:#987c50;font-size:1.5rem;margin-top:28px}
+.reader{font:clamp(1.06rem,1.4vw,1.19rem)/1.85 Georgia,"Times New Roman",serif;max-width:650px;margin:auto;overflow-wrap:break-word}
+.reader p{margin:0 0 1.1em;text-wrap:pretty}
+.reader p:first-child::first-letter{font-size:3.3em;float:left;line-height:.85;margin:.13em .09em 0 0;color:#526347}
+.scene-break{text-align:center;color:#92794d;padding:27px 0 38px;font-size:.83rem;letter-spacing:.45em;user-select:none}
+.the-end{text-align:center;margin-top:56px;font-variant:small-caps;letter-spacing:.19em;font-size:1.3rem;color:#72583e}
+.imprint{text-align:center;border-top:1px solid #a58a6255;margin-top:55px;padding-top:24px;font: .74rem/1.7 system-ui,sans-serif;color:#796445}
+.after{max-width:870px;margin:22px auto 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font:.82rem/1.5 system-ui,sans-serif;color:#e1d3b3}
+.after a{text-decoration:none;border-bottom:1px solid #cdb583}
+@media(max-width:600px){.shell{padding:5px 10px 45px}.top{padding:15px 16px}.book-cover{min-height:430px;padding:48px 28px;border-width:7px;border-left-width:15px}.book-cover h1{margin:28px 0}.pages{padding:32px 23px 45px}.pages:before{inset:7px}.reader{font-size:1.08rem;line-height:1.79}.reader p{margin-bottom:1.16em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:#fff;color:#000}.top,.read-link,.after{display:none}.shell{max-width:none;padding:0}.book-cover{min-height:200px;box-shadow:none;break-after:page}.pages{box-shadow:none;max-width:none;border:0}.pages:before{display:none}.reader{max-width:none}}
+</style>
+</head>
+<body>
+<header class="top"><a href="../index.html">← Wrong Way Dogz Art</a><span class="right">Little Echoes · Stories from Echo Valley</span></header>
+<main class="shell">
+<section class="book-cover" aria-label="The Last Ingredient book cover">
+<div class="smallcap">Wrong Way Dogz Art presents</div>
+<div class="rule"></div>
+<div class="series">Little Echoes</div>
+<div class="ornament" aria-hidden="true">❧</div>
+<h1>The Last<br>Ingredient</h1>
+<div class="rule"></div>
+<div class="smallcap">A story from Echo Valley</div>
+<div class="edition">A little adventure about a very important herb.</div>
+<a class="read-link" href="#read">Open the book ↓</a>
+</section>
+<section class="pages" id="read" aria-label="Read The Last Ingredient">
+<div class="titlepage"><div class="label">Little Echoes · Story One</div><h2>The Last Ingredient</h2><div class="by">An Echo Valley story</div><div class="flourish" aria-hidden="true">❧</div></div>
+<article class="reader"><p>Patch had been staring at his ingredient list for several minutes.</p>
+<p>He turned it sideways.</p>
+<p>He turned it back.</p>
+<p>He checked the cupboard again, although he was quite certain nothing new had appeared in the last five minutes.</p>
+<p>"Hmm."</p>
+<p>Everything was there. The vegetables, the seasonings, the broth. Everything he needed for what promised to be a perfectly wonderful stew.</p>
+<p>Almost everything.</p>
+<p>He sighed, set the list on the table, and reached for his mug.</p>
+<p>Empty.</p>
+<p>"Well, that's another problem."</p>
+<p>Just then, someone knocked.</p>
+<p>"Come in!"</p>
+<p>The door opened, and Galen appeared.</p>
+<p>"Patch, please tell me you've got some beanwater."</p>
+<p>Patch looked up.</p>
+<p>"Galen! Perfect timing."</p>
+<p>"Oh, thank goodness."</p>
+<p>"Just made a fresh pot."</p>
+<p>"You're a wonderful creature."</p>
+<p>"Would you like a cup?"</p>
+<p>"I'd like two, but I'll start with one."</p>
+<p>Patch laughed and fetched another mug.</p>
+<p>A few moments later, they were sitting at the table, enjoying the warm brew.</p>
+<p>Galen took a long sip and settled comfortably into her chair.</p>
+<p>"Ahhh. That's better."</p>
+<p>Patch nodded.</p>
+<p>"Nothing like a good cup of beanwater."</p>
+<p>"Especially when you've spent half the morning trying to find some."</p>
+<p>"Nobody had any?"</p>
+<p>"Not a drop. Beginning to think somebody bought the whole supply."</p>
+<p>"Well, you're welcome to mine."</p>
+<p>"Much appreciated."</p>
+<p>Galen took another sip, then noticed the paper on the table.</p>
+<p>"What's all this?"</p>
+<p>"Ingredients."</p>
+<p>"For what?"</p>
+<p>"Stew."</p>
+<p>"Oh! Making something special?"</p>
+<p>"Planning to."</p>
+<p>Galen glanced over the list.</p>
+<p>"Looks like you've got plenty."</p>
+<p>"That's the trouble."</p>
+<p>"Having plenty?"</p>
+<p>"Having almost plenty."</p>
+<p>She lowered her mug.</p>
+<p>"Almost?"</p>
+<p>"I'm missing one very important ingredient."</p>
+<p>"What is it?"</p>
+<p>"Flourishleaf."</p>
+<p>Galen thought for a moment.</p>
+<p>"Can't say I've heard of it."</p>
+<p>"Wonderful little herb, from what I've heard. Supposed to have delicate, curling leaves. Rather particular about where it grows."</p>
+<p>"Does it taste good?"</p>
+<p>Patch considered that.</p>
+<p>"Well, that's not exactly the point."</p>
+<p>Galen raised an eyebrow.</p>
+<p>"Then what is the point?"</p>
+<p>"The stew simply wouldn't be complete without it."</p>
+<p>She glanced at the ingredients again.</p>
+<p>"Looks pretty complete to me."</p>
+<p>Patch shook his head.</p>
+<p>"Not quite."</p>
+<p>"Well, where do you get this stuff?"</p>
+<p>"That's what I'm trying to figure out."</p>
+<p>Galen leaned back in her chair.</p>
+<p>"Ah. Now I see the problem."</p>
+<p>"I imagine it grows somewhere damp. Perhaps around the hills where the water runs down from the mountain."</p>
+<p>"That's a fair bit of walking."</p>
+<p>"Certainly is."</p>
+<p>"Do you even know where to look?"</p>
+<p>"Not particularly."</p>
+<p>Galen laughed.</p>
+<p>"Well, you've planned this wonderfully."</p>
+<p>Patch smiled.</p>
+<p>"Thank you."</p>
+<p>"That wasn't a compliment."</p>
+<p>"I'll take it anyway."</p>
+<p>They sat quietly for a moment.</p>
+<p>Then Patch looked at Galen.</p>
+<p>"You know, I could use some company."</p>
+<p>She stopped halfway through another sip.</p>
+<p>"Oh, no."</p>
+<p>"What?"</p>
+<p>"I recognize that look."</p>
+<p>"What look?"</p>
+<p>"The one that means I'm about to get involved in something."</p>
+<p>Patch grinned.</p>
+<p>"Come on. Could be a nice afternoon."</p>
+<p>Galen looked down at her mug.</p>
+<p>Then toward the window.</p>
+<p>Then back at Patch.</p>
+<p>"I came here for beanwater."</p>
+<p>"And you got beanwater."</p>
+<p>"That's true."</p>
+<p>"And there's plenty more when we get back."</p>
+<p>She sighed.</p>
+<p>"You're not going to stop talking about this herb, are you?"</p>
+<p>"Probably not."</p>
+<p>Galen finished her cup.</p>
+<p>"All right. Fine. Let's go find your ridiculous leaves."</p>
+<p>Patch stood enthusiastically.</p>
+<p>"Excellent!"</p>
+<p>"But if we get lost, I'm blaming you."</p>
+<p>"Fair enough."</p>
+<p>"And I expect another cup when we get back."</p>
+<p>"Naturally."</p>
+<p>With that, Patch gathered a few supplies, checked his pockets, and led the way out the door.</p>
+<p>What began as an ordinary visit for beanwater had officially become an expedition.</p>
+<p>Neither of them knew quite where they were going.</p>
+<p>But at least they had a direction to start.</p>
+<div class="scene-break" aria-label="Scene break"><span aria-hidden="true">✦ &nbsp; ❧ &nbsp; ✦</span></div>
+<p>The journey began pleasantly enough.</p>
+<p>They left Patch's home behind, making their way through familiar patches of woodland. Sunlight filtered between the branches, birds called overhead, and a comfortable breeze stirred the leaves.</p>
+<p>Galen walked beside Patch, occasionally stopping to examine something along the way.</p>
+<p>For a while, they simply talked.</p>
+<p>Then the sound of rushing water began growing louder.</p>
+<p>Soon, the trees opened onto a river.</p>
+<p>The current moved swiftly between scattered rocks, tumbling into white, churning rapids farther downstream.</p>
+<p>Galen stopped at the bank.</p>
+<p>"Well."</p>
+<p>Patch looked up and down the water.</p>
+<p>"Hmm."</p>
+<p>"There's no bridge."</p>
+<p>"Doesn't appear to be."</p>
+<p>"Can we cross somewhere else?"</p>
+<p>"Perhaps. Might take a while to find a better spot."</p>
+<p>Galen looked at the river again.</p>
+<p>"Your herb had better be something special."</p>
+<p>"Oh, it is."</p>
+<p>A voice called down from above.</p>
+<p>"Need a hand?"</p>
+<p>They looked up.</p>
+<p>A bird was perched on a branch overlooking the river.</p>
+<p>"Possibly," Patch replied.</p>
+<p>The bird hopped closer.</p>
+<p>"Trying to get across?"</p>
+<p>"That was the idea."</p>
+<p>"Oh, I can help with that."</p>
+<p>Galen looked hopeful.</p>
+<p>"Really?"</p>
+<p>"Certainly! Could carry a vine over and secure it to that tree. Give you something to hold on to while you cross the stones."</p>
+<p>"That would be wonderful," Patch said.</p>
+<p>The bird puffed out its chest.</p>
+<p>"Of course, I'll need something first."</p>
+<p>Galen closed her eyes briefly.</p>
+<p>"Naturally."</p>
+<p>Patch looked up.</p>
+<p>"What do you need?"</p>
+<p>"A pebble."</p>
+<p>"A pebble?"</p>
+<p>"A very particular pebble."</p>
+<p>The bird pointed toward a fallen log farther along the bank.</p>
+<p>"Just over there. Small, round, grayish. You'll know it when you see it."</p>
+<p>Patch glanced in that direction.</p>
+<p>"All right."</p>
+<p>"Shouldn't take you long."</p>
+<p>Galen folded her arms.</p>
+<p>"Why can't you get it yourself?"</p>
+<p>The bird tilted its head.</p>
+<p>"Oh, I have my reasons."</p>
+<p>"Such as?"</p>
+<p>"Very important bird reasons."</p>
+<p>Galen stared at him.</p>
+<p>Patch shrugged.</p>
+<p>"Well, it doesn't sound too difficult."</p>
+<p>"Of course it doesn't," Galen muttered.</p>
+<p>They walked along the bank toward the fallen log.</p>
+<p>The pebble was easy enough to find.</p>
+<p>Unfortunately, it was sitting in a particularly revolting collection of wet, rotting vegetation and thick, brown muck.</p>
+<p>Patch stared down at it.</p>
+<p>"Oh."</p>
+<p>Galen approached.</p>
+<p>"What?"</p>
+<p>He pointed.</p>
+<p>"There."</p>
+<p>She looked.</p>
+<p>Then immediately stepped back.</p>
+<p>"Absolutely not."</p>
+<p>Patch glanced at her.</p>
+<p>"What?"</p>
+<p>"I'm not putting my hand in that."</p>
+<p>"We both need to cross the river."</p>
+<p>"You're the one who wants the herb."</p>
+<p>Patch looked back at the pebble.</p>
+<p>He considered finding a stick.</p>
+<p>He considered kicking the log.</p>
+<p>He considered whether this was really worth the trouble.</p>
+<p>Then he rolled up his sleeve.</p>
+<p>Galen stepped farther away.</p>
+<p>"I want it officially known that I advised against this."</p>
+<p>"Noted."</p>
+<p>Patch crouched and reached into the muck.</p>
+<p>His fingers closed around something slippery.</p>
+<p>He made a face.</p>
+<p>"Oh, that's unpleasant."</p>
+<p>A sudden shriek of laughter erupted from the tree above.</p>
+<p>"HA! YOU ACTUALLY DID IT!"</p>
+<p>Patch froze.</p>
+<p>The bird was perched on a nearby branch, laughing so hard he could barely keep his balance.</p>
+<p>"OH, THAT'S DISGUSTING!"</p>
+<p>Patch slowly withdrew his hand.</p>
+<p>"What's so funny?"</p>
+<p>"I CAN'T BELIEVE YOU PUT YOUR HAND IN THERE!"</p>
+<p>Galen looked up.</p>
+<p>"Didn't you tell him to?"</p>
+<p>The bird burst into another fit of laughter.</p>
+<p>"I didn't think he'd actually do it!"</p>
+<p>Patch stared at the filthy pebble in his hand.</p>
+<p>"Didn't you say you needed this?"</p>
+<p>"Need it? No!"</p>
+<p>The bird laughed again.</p>
+<p>"I just wanted to see if you'd get it!"</p>
+<p>Galen placed a hand over her mouth.</p>
+<p>Patch looked from the pebble to the bird.</p>
+<p>"Then what about the vine?"</p>
+<p>"Oh, that's done."</p>
+<p>"What?"</p>
+<p>"Put it up right after you left. It's ready!"</p>
+<p>Patch turned.</p>
+<p>Sure enough, farther upstream, a sturdy vine had been secured between two trees, providing a useful handhold across a line of large stepping stones.</p>
+<p>Galen began laughing.</p>
+<p>Patch looked down at his hand.</p>
+<p>Then at the pebble.</p>
+<p>Then back at the bird.</p>
+<p>"Wonderful."</p>
+<p>The bird fluttered his wings.</p>
+<p>"Oh, you should've seen your face!"</p>
+<p>Galen was laughing hard enough that she had to lean against a tree.</p>
+<p>Patch sighed.</p>
+<p>"Glad somebody's enjoying themselves."</p>
+<p>He walked to the river's edge and thoroughly washed his hands.</p>
+<p>Then he washed the pebble.</p>
+<p>Turned it over.</p>
+<p>Washed it again.</p>
+<p>And slipped it into his pocket.</p>
+<p>Galen noticed.</p>
+<p>"You're keeping that?"</p>
+<p>"Of course."</p>
+<p>"Why?"</p>
+<p>"I worked hard for it."</p>
+<p>That started her laughing all over again.</p>
+<p>Eventually, she managed to compose herself and looked back toward the bird.</p>
+<p>"Actually, since you're being so helpful, maybe you can answer something."</p>
+<p>The bird straightened proudly.</p>
+<p>"Certainly."</p>
+<p>"Have you ever heard of an herb called Flourishleaf?"</p>
+<p>"Oh, sure!"</p>
+<p>Patch looked up immediately.</p>
+<p>"You have?"</p>
+<p>"Of course. Little curly leaves, grows where there's plenty of moisture."</p>
+<p>"That's it!"</p>
+<p>"You're heading the right way," the bird said. "Cross the river, keep going through the woods and up into the hills, and eventually the trees will open up. You'll see the mountain and the falling water beyond."</p>
+<p>Patch nodded.</p>
+<p>"Excellent! Thank you."</p>
+<p>"You're welcome!"</p>
+<p>The bird settled back onto his branch.</p>
+<p>"And thanks for the entertainment!"</p>
+<p>Galen shook her head.</p>
+<p>They made their way to the crossing, using the secured vine to steady themselves over the slick stones.</p>
+<p>The water rushed beneath them, occasionally spraying their feet.</p>
+<p>Once safely across, Patch looked back toward the bird.</p>
+<p>"Appreciate the help!"</p>
+<p>"ANYTIME!"</p>
+<p>The bird gave a cheerful wave of his wing.</p>
+<p>Galen leaned toward Patch.</p>
+<p>"Let's not come back this way if we can help it."</p>
+<p>Patch patted his pocket.</p>
+<p>"At least we got a nice pebble out of it."</p>
+<p>Galen groaned.</p>
+<p>"Keep walking."</p>
+<div class="scene-break" aria-label="Scene break"><span aria-hidden="true">✦ &nbsp; ❧ &nbsp; ✦</span></div>
+<p>Beyond the river, the woodland grew thicker for a time, then gradually began climbing through the hills.</p>
+<p>Patch and Galen walked at an easy pace, occasionally stopping for a drink or to admire something unusual along the way.</p>
+<p>At one point, Patch noticed movement beside a moss-covered log.</p>
+<p>"Did you see that?"</p>
+<p>Galen glanced over.</p>
+<p>"See what?"</p>
+<p>"Something moved."</p>
+<p>A tiny creature stood beside the log, covered in what looked almost exactly like moss.</p>
+<p>It remained perfectly still.</p>
+<p>Patch leaned closer.</p>
+<p>Nothing.</p>
+<p>"Huh."</p>
+<p>Galen looked at the creature.</p>
+<p>Then at Patch.</p>
+<p>"Maybe it doesn't feel like talking."</p>
+<p>"Perhaps."</p>
+<p>They continued walking.</p>
+<p>A few moments later, Patch looked back.</p>
+<p>The creature was gone.</p>
+<p>"Galen?"</p>
+<p>"Keep walking, Patch."</p>
+<p>He hurried to catch up.</p>
+<p>The climb grew a little steeper, though the weather remained pleasant. Occasional breaks in the trees offered glimpses of the surrounding woodland.</p>
+<p>Before long, the ground began leveling out.</p>
+<p>The trees thinned.</p>
+<p>More sunlight reached the hillside.</p>
+<p>Then, almost without warning, the forest gave way to an open overlook.</p>
+<p>Patch stepped into the sunlight and stopped.</p>
+<p>"Oh, would you look at that."</p>
+<p>Galen joined him.</p>
+<p>Before them stretched an enormous sweep of green, nestled between the surrounding wooded hills and a distant mountainside.</p>
+<p>The open land rolled gently toward the mountain, interrupted here and there by scattered trees, clusters of unfamiliar plants, and broad shelves of stone.</p>
+<p>Far across the open expanse, a waterfall spilled down the mountainside into a wide, glittering pool.</p>
+<p>Sunlight danced across the water.</p>
+<p>A few birds drifted overhead.</p>
+<p>For a moment, neither Patch nor Galen spoke.</p>
+<p>Then Galen smiled.</p>
+<p>"I always love coming here."</p>
+<p>Patch nodded.</p>
+<p>"Beautiful, isn't it?"</p>
+<p>"Sure is."</p>
+<p>A gentle breeze moved through the grass below.</p>
+<p>Galen took a long breath.</p>
+<p>"You know, we've been here plenty of times. Funny we've never noticed your herb."</p>
+<p>"Well, we've never been looking for it."</p>
+<p>"And you're sure we'll recognize it?"</p>
+<p>Patch considered that.</p>
+<p>"Fairly sure."</p>
+<p>Galen looked at him.</p>
+<p>"Fairly?"</p>
+<p>"It's supposed to have curly leaves."</p>
+<p>"Supposed to?"</p>
+<p>"That's what I've heard."</p>
+<p>Galen shook her head, smiling.</p>
+<p>"This ought to be interesting."</p>
+<p>She looked across the open landscape.</p>
+<p>"Good place to spend an afternoon."</p>
+<p>"Especially when you're not in a hurry."</p>
+<p>She glanced at Patch.</p>
+<p>"Which apparently we are."</p>
+<p>Patch grinned.</p>
+<p>"Only a little."</p>
+<p>They started down the hillside.</p>
+<div class="scene-break" aria-label="Scene break"><span aria-hidden="true">✦ &nbsp; ❧ &nbsp; ✦</span></div>
+<p>The place was quiet, but it was far from empty.</p>
+<p>Small birds moved between the scattered trees. Insects hummed among the plants. Occasional rustlings in the grass suggested that plenty of little lives were going about their business.</p>
+<p>Nothing seemed particularly concerned with the arrival of two travelers.</p>
+<p>And that suited Patch and Galen just fine.</p>
+<p>They began searching.</p>
+<p>First they checked the low-growing plants near the trees.</p>
+<p>Then a cluster of herbs beside a damp rock.</p>
+<p>Then another patch near a little stream that wound through the grass.</p>
+<p>Patch crouched beside a broad-leafed plant.</p>
+<p>"What about this?"</p>
+<p>Galen looked over.</p>
+<p>"Doesn't look very curly."</p>
+<p>"No, suppose not."</p>
+<p>They continued.</p>
+<p>A few minutes later, Patch called again.</p>
+<p>"Galen! What about these?"</p>
+<p>She glanced down.</p>
+<p>"Patch."</p>
+<p>"Hmm?"</p>
+<p>"Those are the same plants you checked a little while ago."</p>
+<p>He studied them carefully.</p>
+<p>"Oh."</p>
+<p>Galen laughed.</p>
+<p>"At this rate, we'll be here until tomorrow."</p>
+<p>"Well, there must be some somewhere."</p>
+<p>"Of course there must."</p>
+<p>They followed the stream toward a shaded patch beneath a solitary tree.</p>
+<p>Nearby, a little bird was busy arranging its feathers.</p>
+<p>Galen approached.</p>
+<p>"Excuse me."</p>
+<p>The bird looked down.</p>
+<p>"Yes?"</p>
+<p>"We're trying to find a particular herb. Wondered if you might know where it grows."</p>
+<p>"What sort of herb?"</p>
+<p>Patch stepped forward.</p>
+<p>"Flourishleaf. Small curling leaves. Likes damp places."</p>
+<p>The bird perked up.</p>
+<p>"Ohhhh! The fancy stuff!"</p>
+<p>Patch nodded enthusiastically.</p>
+<p>"That's the one!"</p>
+<p>"The ridiculous little thing everybody gets so excited about, even though nobody really needs—"</p>
+<p>Galen turned toward Patch.</p>
+<p>"Wait, what does—"</p>
+<p>"YES! EXACTLY!" Patch interrupted.</p>
+<p>The bird blinked.</p>
+<p>Patch continued quickly.</p>
+<p>"Wonderful! You know where it grows?"</p>
+<p>"Well, yes. Over by the mountain. There's a large opening in the rock with vines hanging down. Usually grows right around those."</p>
+<p>"Excellent! Thank you very much!"</p>
+<p>Patch was already turning away.</p>
+<p>"Come on, Galen! We're nearly there!"</p>
+<p>Galen looked at the bird.</p>
+<p>The bird looked back.</p>
+<p>"Have a nice afternoon!" it chirped.</p>
+<p>Galen hurried after Patch.</p>
+<p>"Patch."</p>
+<p>"Hmm?"</p>
+<p>"What was that bird about to say?"</p>
+<p>"Nice fellow, wasn't he?"</p>
+<p>"Patch."</p>
+<p>"Very helpful. Knew exactly where we needed to go."</p>
+<p>"Patch."</p>
+<p>He kept walking.</p>
+<p>Galen narrowed her eyes.</p>
+<p>"Mhm."</p>
+<div class="scene-break" aria-label="Scene break"><span aria-hidden="true">✦ &nbsp; ❧ &nbsp; ✦</span></div>
+<p>As they approached the mountain, the sound of falling water grew louder.</p>
+<p>The waterfall tumbled down the stone face into an enormous pool, its edges spreading into shallower water between flat rocks and patches of vegetation.</p>
+<p>Some of the water flowed away in narrow channels. Elsewhere, it vanished beneath the ground.</p>
+<p>The air smelled pleasantly of damp earth and fresh greenery.</p>
+<p>Patch stopped to admire the view.</p>
+<p>"Quite a place."</p>
+<p>Galen nodded.</p>
+<p>"Wouldn't mind spending a whole day here."</p>
+<p>"Perhaps another time."</p>
+<p>"Preferably without having to look for anything."</p>
+<p>"That would be nice."</p>
+<p>They followed the rocky edge of the mountainside until they reached a place where the ground opened into a tremendous hollow.</p>
+<p>The opening descended into darkness.</p>
+<p>Thick vines hung from the surrounding stone, some disappearing far below where the sunlight couldn't reach.</p>
+<p>Moisture clung to the leaves.</p>
+<p>Patch approached cautiously.</p>
+<p>Then he spotted something.</p>
+<p>"There!"</p>
+<p>Galen followed his gaze.</p>
+<p>Growing among the hanging vines was a small cluster of delicate, curling leaves.</p>
+<p>"Is that it?"</p>
+<p>Patch smiled.</p>
+<p>"That's it."</p>
+<p>Galen looked at the plant.</p>
+<p>Then at Patch.</p>
+<p>Then at the enormous opening beneath it.</p>
+<p>"Well, that's inconvenient."</p>
+<p>"A little."</p>
+<p>"Can you reach it?"</p>
+<p>"Let's find out."</p>
+<p>Patch moved to a firm, level section of stone and stretched toward the vine.</p>
+<p>His fingers came nowhere near it.</p>
+<p>He tried from another angle.</p>
+<p>Still too far.</p>
+<p>He leaned forward slightly.</p>
+<p>Galen immediately spoke.</p>
+<p>"No."</p>
+<p>Patch looked back.</p>
+<p>"What?"</p>
+<p>"Whatever you're thinking, no."</p>
+<p>"I'm just trying to reach it."</p>
+<p>"You're not falling into a giant hole over a handful of leaves."</p>
+<p>Patch stood straight again.</p>
+<p>"Fair point."</p>
+<p>He looked around.</p>
+<p>A few sticks lay near the edge of the vegetation.</p>
+<p>He picked one up and carefully extended it toward the plant.</p>
+<p>Too short.</p>
+<p>He found another.</p>
+<p>Longer, but much too flexible.</p>
+<p>He tried to lift the vine with it.</p>
+<p>The stick bent uselessly.</p>
+<p>"Hmm."</p>
+<p>Galen watched.</p>
+<p>"Having trouble?"</p>
+<p>"Slightly."</p>
+<p>"Looks like a bit more than slightly."</p>
+<p>Patch lowered the stick.</p>
+<p>"Well, I'm open to suggestions."</p>
+<p>Galen studied the vines.</p>
+<p>Then she noticed Patch adjusting something in his pocket.</p>
+<p>"Say."</p>
+<p>"Hmm?"</p>
+<p>"You still have that pebble?"</p>
+<p>Patch gave her an offended look.</p>
+<p>"Of course I still have the pebble."</p>
+<p>"Good. Take it out."</p>
+<p>"Why?"</p>
+<p>"Just take it out."</p>
+<p>Patch produced the little stone.</p>
+<p>Galen held out her hand.</p>
+<p>"Got any string?"</p>
+<p>Patch searched his bag.</p>
+<p>"Some twine."</p>
+<p>"Perfect."</p>
+<p>She examined the pebble.</p>
+<p>"If we tie this to the end, we might be able to swing it around one of those hanging vines and pull it closer."</p>
+<p>Patch thought about that.</p>
+<p>"That could work."</p>
+<p>"I know."</p>
+<p>He smiled.</p>
+<p>"Well, let's give it a try."</p>
+<p>They secured the pebble to the twine.</p>
+<p>Patch stood well back from the edge and swung the weighted end gently.</p>
+<p>"Ready?"</p>
+<p>"Try not to lose your precious rock."</p>
+<p>He tossed it.</p>
+<p>The pebble sailed past the vine.</p>
+<p>Down it went.</p>
+<p>And down.</p>
+<p>And down.</p>
+<p>Patch hurriedly caught the remaining twine.</p>
+<p>Galen stared at him.</p>
+<p>"Wonderful first attempt."</p>
+<p>"Just getting a feel for it."</p>
+<p>He pulled the pebble back up.</p>
+<p>The second attempt struck the vine, bounced off, and fell away.</p>
+<p>The third wrapped halfway around a neighboring stem before slipping loose.</p>
+<p>Patch sighed.</p>
+<p>"This is getting ridiculous."</p>
+<p>Galen raised an eyebrow.</p>
+<p>"Getting?"</p>
+<p>He looked at her.</p>
+<p>"Very funny."</p>
+<p>She stepped beside him.</p>
+<p>"Here. Let's try together."</p>
+<p>Patch handed her part of the twine.</p>
+<p>They adjusted their position and studied the way the vines hung against the rock.</p>
+<p>"That thicker one," Galen said. "If we can get around that, we might pull the whole cluster closer."</p>
+<p>Patch nodded.</p>
+<p>"All right."</p>
+<p>He swung the pebble again.</p>
+<p>This time it passed beyond the hanging vine.</p>
+<p>Galen guided the loose line as Patch gave it a careful flick.</p>
+<p>The pebble swung around the stem and came back toward them.</p>
+<p>"There!" Galen said.</p>
+<p>Patch caught the line.</p>
+<p>Together, they drew the twine into a loop around the vine and pulled gently.</p>
+<p>The vine shifted.</p>
+<p>Just a little.</p>
+<p>They adjusted their grip.</p>
+<p>Pulled again.</p>
+<p>Slowly, the cluster of Flourishleaf moved toward the rocky ledge.</p>
+<p>"Easy," Galen warned.</p>
+<p>"I've got it."</p>
+<p>"Don't pull the whole thing down."</p>
+<p>"I'm not."</p>
+<p>"You're pulling awfully hard."</p>
+<p>Patch relaxed the line.</p>
+<p>The vine stopped swaying.</p>
+<p>A moment later, the leaves came within reach.</p>
+<p>Carefully, Patch selected a few and clipped them free.</p>
+<p>He stepped back onto solid ground.</p>
+<p>For a moment, he simply stood there looking at what he'd collected.</p>
+<p>Then he held the leaves triumphantly in the air.</p>
+<p>"HA! THERE WE ARE!"</p>
+<p>Galen gave a little theatrical bow.</p>
+<p>"Congratulations. You have successfully acquired your leaves."</p>
+<p>"Not just any leaves."</p>
+<p>"Of course not."</p>
+<p>Patch carefully tucked the herb into his bag.</p>
+<p>Galen retrieved the twine, untied the pebble, and handed it back.</p>
+<p>"Here's your rock."</p>
+<p>Patch slipped it into his pocket.</p>
+<p>"Thank you."</p>
+<p>Galen shook her head, smiling.</p>
+<p>Then something caught her attention.</p>
+<p>A cool draft rose from the enormous opening.</p>
+<p>She stepped toward a safe place along the rocky edge and looked down.</p>
+<p>The vines vanished into shadow.</p>
+<p>Somewhere far below, she could hear water moving.</p>
+<p>For just a moment, something glimmered in the darkness.</p>
+<p>"Patch?"</p>
+<p>"Hmm?"</p>
+<p>"Have you ever been down there?"</p>
+<p>He approached and peered into the opening.</p>
+<p>"No. Can't say I have."</p>
+<p>"Sounds like there's quite a bit of water down there."</p>
+<p>"Certainly does."</p>
+<p>Galen looked again.</p>
+<p>"Wonder what's at the bottom."</p>
+<p>Patch glanced at the opening.</p>
+<p>Then at the herb in his bag.</p>
+<p>Then back at Galen.</p>
+<p>"Well," he said, "I think we've investigated enough holes for one day."</p>
+<p>She laughed.</p>
+<p>"Fair enough."</p>
+<p>They turned toward the open landscape.</p>
+<p>For a little while, neither seemed particularly eager to leave.</p>
+<p>They found a broad, flat stone warmed by the afternoon sun and sat down to rest.</p>
+<p>The waterfall murmured in the distance.</p>
+<p>A few birds passed overhead.</p>
+<p>Nearby, the grass rustled gently in the breeze.</p>
+<p>Galen stretched her legs.</p>
+<p>"You know, this wasn't such a bad idea after all."</p>
+<p>Patch smiled.</p>
+<p>"Told you."</p>
+<p>"Don't get too excited. We still have to get home."</p>
+<p>"True."</p>
+<p>"And I'm expecting that beanwater."</p>
+<p>"Of course."</p>
+<p>She leaned back and looked across the open field.</p>
+<p>"Still a beautiful place."</p>
+<p>"Sure is."</p>
+<p>For a while, they simply enjoyed being there.</p>
+<p>Then, eventually, Patch stood.</p>
+<p>"Well, shall we?"</p>
+<p>Galen rose beside him.</p>
+<p>"Let's get your ridiculous stew finished."</p>
+<div class="scene-break" aria-label="Scene break"><span aria-hidden="true">✦ &nbsp; ❧ &nbsp; ✦</span></div>
+<p>By the time Patch and Galen made it back, the daylight had begun to soften.</p>
+<p>They had come back over the hills, through the forest, and across the river without any further incidents.</p>
+<p>Although Galen had insisted on checking the trees for suspicious-looking birds.</p>
+<p>Twice.</p>
+<p>Back at the cabin, Patch set his bag on the table and turned his attention to dinner.</p>
+<p>He stirred the coals in his fireplace back to life and settled his stew pot over the fire.</p>
+<p>Galen made herself comfortable in her familiar chair.</p>
+<p>"Well," she said, "that was an outing."</p>
+<p>"Certainly was."</p>
+<p>Patch checked the pot, added the remaining ingredients, and gave everything a good stir.</p>
+<p>Then he prepared another pot of beanwater.</p>
+<p>"More beanwater?"</p>
+<p>Galen smiled.</p>
+<p>"You remembered."</p>
+<p>"Of course."</p>
+<p>He poured two mugs and joined her at the table while the stew simmered over the hearth.</p>
+<p>For a little while, they enjoyed their drinks in comfortable silence.</p>
+<p>Then Galen looked across at him.</p>
+<p>"So."</p>
+<p>Patch glanced up.</p>
+<p>"So?"</p>
+<p>"Are you going to tell me?"</p>
+<p>"Tell you what?"</p>
+<p>"What that bird meant."</p>
+<p>Patch took another sip.</p>
+<p>"Which bird?"</p>
+<p>"Don't."</p>
+<p>He smiled into his mug.</p>
+<p>Galen leaned forward.</p>
+<p>"The one in the meadow."</p>
+<p>"Oh, yes. Helpful little fellow."</p>
+<p>"Patch."</p>
+<p>"Hmm?"</p>
+<p>"You knew something I didn't."</p>
+<p>He looked at her.</p>
+<p>"Did I?"</p>
+<p>"About that herb."</p>
+<p>Patch considered his answer.</p>
+<p>"Depends what you mean."</p>
+<p>Galen shook her head.</p>
+<p>"You're unbelievable."</p>
+<p>Patch grinned.</p>
+<p>"Let's see how the stew turns out first."</p>
+<p>"Oh, this ought to be interesting."</p>
+<p>A little while later, the cabin was filled with the wonderful smell of simmering vegetables and rich broth.</p>
+<p>Patch checked the pot.</p>
+<p>Stirred it.</p>
+<p>Tasted a spoonful.</p>
+<p>Then nodded with satisfaction.</p>
+<p>"Perfect."</p>
+<p>Galen looked up from her chair.</p>
+<p>"Ready?"</p>
+<p>"Almost."</p>
+<p>She closed her eyes.</p>
+<p>"Of course it is."</p>
+<p>Patch laughed.</p>
+<p>He ladled two generous servings into bowls and placed them on the table.</p>
+<p>Galen leaned over hers.</p>
+<p>"Oh, that smells fantastic."</p>
+<p>"Thank you."</p>
+<p>She reached for her spoon.</p>
+<p>"Ah-ah!" Patch said.</p>
+<p>Galen stopped.</p>
+<p>"What now?"</p>
+<p>"One last thing."</p>
+<p>He reached into his bag.</p>
+<p>Carefully, he removed the precious Flourishleaf.</p>
+<p>Galen watched as he selected a few delicate leaves.</p>
+<p>He placed them on top of the steaming stew.</p>
+<p>For a moment, nothing happened.</p>
+<p>Then the steam began to change.</p>
+<p>A delicate spiral rose from Galen's bowl, twisting upward into a beautiful, curling flourish.</p>
+<p>Above Patch's stew, the vapor formed a tiny crown before breaking apart into a dozen graceful wisps.</p>
+<p>For several seconds, the steam danced above the table.</p>
+<p>Then it faded.</p>
+<p>And everything was ordinary again.</p>
+<p>Galen sat perfectly still.</p>
+<p>Patch beamed.</p>
+<p>"Well?"</p>
+<p>She stared at her bowl.</p>
+<p>Then at Patch.</p>
+<p>Then back at the bowl.</p>
+<p>"That..."</p>
+<p>"Yes?"</p>
+<p>"...was actually pretty neat."</p>
+<p>Patch nodded proudly.</p>
+<p>"Wasn't it?"</p>
+<p>Galen picked up her spoon.</p>
+<p>She tasted the stew.</p>
+<p>Her eyes widened.</p>
+<p>"Oh, that's good."</p>
+<p>"Thank you."</p>
+<p>She took another bite.</p>
+<p>"Really good."</p>
+<p>"Glad you like it."</p>
+<p>She paused.</p>
+<p>"Patch?"</p>
+<p>"Hmm?"</p>
+<p>"Does the Flourishleaf actually change the taste?"</p>
+<p>"Nope."</p>
+<p>"Not at all?"</p>
+<p>"Not a bit."</p>
+<p>Galen slowly lowered her spoon.</p>
+<p>She looked at Patch.</p>
+<p>He looked back at her.</p>
+<p>"We crossed a river."</p>
+<p>"Yep."</p>
+<p>"I watched you stick your hand into something absolutely revolting."</p>
+<p>"Yep."</p>
+<p>"We climbed those hills."</p>
+<p>"Mhm."</p>
+<p>"Wandered around looking at plants."</p>
+<p>"Quite a few."</p>
+<p>"Nearly lost your precious pebble down an enormous hole."</p>
+<p>"That would've been unfortunate."</p>
+<p>Galen gestured toward her bowl.</p>
+<p>"For three seconds of fancy steam?"</p>
+<p>Patch smiled.</p>
+<p>"Pretty good steam, though."</p>
+<p>Galen tried to keep a serious expression.</p>
+<p>She really did.</p>
+<p>But the corners of her mouth began to twitch.</p>
+<p>Then she laughed.</p>
+<p>Patch joined her.</p>
+<p>And before long, both of them were sitting at the table, laughing over two perfectly good bowls of stew.</p>
+<p>Eventually, Galen wiped her eyes.</p>
+<p>"Oh, that's ridiculous."</p>
+<p>Patch nodded.</p>
+<p>"Little bit."</p>
+<p>She picked up her spoon again.</p>
+<p>"Well, I suppose I can't complain."</p>
+<p>"Oh?"</p>
+<p>"Got a good meal out of it. Saw some beautiful country. Had a decent adventure."</p>
+<p>Patch smiled.</p>
+<p>"See?"</p>
+<p>Galen tasted another spoonful.</p>
+<p>"Still would've been good without the leaves."</p>
+<p>"Of course it would."</p>
+<p>She stopped.</p>
+<p>Slowly, she looked up.</p>
+<p>"Wait."</p>
+<p>Patch continued eating.</p>
+<p>"You knew?"</p>
+<p>He looked at her.</p>
+<p>"Never said I didn't."</p>
+<p>Galen burst out laughing again.</p>
+<p>"PATCH!"</p>
+<p>He laughed so hard he nearly dropped his spoon.</p>
+<p>"WHAT?"</p>
+<p>"YOU DRAGGED ME ALL THAT WAY!"</p>
+<p>"You came willingly!"</p>
+<p>"I CAME FOR BEANWATER!"</p>
+<p>That only made them laugh harder.</p>
+<p>And for a while, the little cabin was filled with the sound of two friends enjoying an exceptionally good dinner.</p>
+<div class="scene-break" aria-label="Scene break"><span aria-hidden="true">✦ &nbsp; ❧ &nbsp; ✦</span></div>
+<p>Later, after the bowls were empty, Patch brought out some homemade chocolate fudge.</p>
+<p>Galen took a piece.</p>
+<p>"Oh, now that's good."</p>
+<p>"Made it earlier."</p>
+<p>"You've been busy today."</p>
+<p>"Apparently not busy enough. Still had time to drag you halfway across Echo Valley."</p>
+<p>Galen laughed.</p>
+<p>"Well, I suppose there are worse ways to spend an afternoon."</p>
+<p>She finished her fudge, then stood and stretched.</p>
+<p>"Speaking of which, I ought to get moving."</p>
+<p>Patch nodded and began gathering the empty bowls.</p>
+<p>Galen reached for another piece of fudge.</p>
+<p>Patch looked over.</p>
+<p>"For the walk home," she explained.</p>
+<p>"Naturally."</p>
+<p>She wandered toward the door, then stopped.</p>
+<p>"You know, Patch, I wouldn't mind going back there sometime."</p>
+<p>"For more herbs?"</p>
+<p>"No, not for more herbs."</p>
+<p>She laughed.</p>
+<p>"That big opening in the mountain. I'd really like to know what's underneath it."</p>
+<p>Patch considered this.</p>
+<p>"Well, I suppose we could take a look."</p>
+<p>"Really?"</p>
+<p>"Sure. Just not today."</p>
+<p>Galen smiled.</p>
+<p>"Definitely not today."</p>
+<p>Patch reached into his pocket and set the little pebble on the table.</p>
+<p>"Next time, though, I think I'll bring a longer string."</p>
+<p>Galen stared at the pebble.</p>
+<p>"You're still keeping that thing?"</p>
+<p>"Absolutely."</p>
+<p>"Unbelievable."</p>
+<p>She shook her head, still smiling, and opened the door.</p>
+<p>"Well, I'll see you around, Patch."</p>
+<p>"See you later, Galen."</p>
+<p>She stepped outside, taking another bite of fudge as she headed away.</p>
+<p>Patch watched her go for a moment before closing the door.</p>
+<p>He glanced at the pebble sitting on his table.</p>
+<p>Picked it up.</p>
+<p>Turned it over in his hand.</p>
+<p>Then placed it on the shelf beside a few other odds and ends.</p>
+<p>"Perfectly good pebble," he muttered.</p>
+<p>And went about tidying up.</p></article>
+<div class="the-end">The End</div>
+<footer class="imprint">Little Echoes · Wrong Way Dogz Art<br>Free to read · All stories and characters © Wrong Way Dogz Art, 2026</footer>
+</section>
+<div class="after"><a href="../index.html">← Back to Base Camp</a><a href="#read">Back to the first page ↑</a></div>
+</main>
+</body>
+</html>
